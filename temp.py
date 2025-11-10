@@ -1,6 +1,5 @@
 import time
 from picarx import Picarx 
-from driver import Driver
 
 if __name__ == "__main__":
     px = Picarx()
