@@ -18,8 +18,8 @@ try:
         current_action = actions.pop(0)  # remove the first item
         if current_action == "forward":
             px.forward(speed)
-            #time.sleep(5)
-            #px.stop()
+            time.sleep(2)
+            px.stop()
             i += 1
         elif current_action == "reverse":
             px.forward(-25)
@@ -27,20 +27,20 @@ try:
             px.stop()
             i += 1
         elif current_action == "right":
-            #px.forward(speed)
+            px.forward(speed)
             for angle in range(0,35,5):
                 px.set_dir_servo_angle(angle)
                 time.sleep(0.075)
             px.stop()
             i += 1
         elif current_action == "straight":
-            #px.forward(speed)
+            px.forward(speed)
             for angle in range(35,0,-5):
                 px.set_dir_servo_angle(angle)
                 time.sleep(0.075)
             i += 1
         elif current_action == "left":
-            #px.forward(speed)
+            px.forward(speed)
             for angle in range(0,-35,-5):
                 px.set_dir_servo_angle(angle)
                 time.sleep(0.075)
