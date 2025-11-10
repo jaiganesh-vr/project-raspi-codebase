@@ -12,7 +12,8 @@ start = (5, 5)
 
 px = Picarx()
 
-actions = ["forward", "reverse", "right", "straight", "left", "straight", "stop","end"]
+actions = ["end"]
+#actions = ["forward", "reverse", "right", "straight", "left", "straight", "stop","end"]
 
 try:
     while actions:  # runs while the list is not empty
@@ -59,6 +60,7 @@ try:
                 directions = navigator.path_to_directions(path)
                 actions.append(directions)
                 print("Directions:", directions)
+                print(actions)
                 start == goal
             else:
                 print("No path found.")
