@@ -3,7 +3,7 @@ from picarx import Picarx
 import time
 
 reset_mcu()
-sleep(0.2)
+time.sleep(0.2)
 
 px = Picarx()
 
