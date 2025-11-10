@@ -6,7 +6,7 @@ import time
 reset_mcu()
 time.sleep(2)
 
-speed = 0.001
+speed = 1
 #actions = ["forward"]
 #actions = ["reverse"]
 #actions = ["right"]
@@ -15,6 +15,7 @@ actions = ["left", "forward", "right", "forward"]
 px = Picarx()
 
 def move_forward(speed):
+    print("Driving Forward")
     px.forward(speed)
     time.sleep(1)
     px.stop
