@@ -29,18 +29,18 @@ try:
         elif current_action == "right":
             for angle in range(0,35,5):
                 px.set_dir_servo_angle(angle)
-                time.sleep(0.25)
+                time.sleep(0.1)
             px.stop()
             i += 1
         elif current_action == "straight":
             for angle in range(35,0,-5):
                 px.set_dir_servo_angle(angle)
-                time.sleep(0.25)
+                time.sleep(0.1)
             i += 1
         elif current_action == "left":
             for angle in range(0,-35,-5):
                 px.set_dir_servo_angle(angle)
-                time.sleep(0.25)
+                time.sleep(0.1)
             i += 1
         elif current_action == "stop":
             px.stop()
