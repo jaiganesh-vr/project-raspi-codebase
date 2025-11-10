@@ -101,7 +101,7 @@ def path_to_directions(path):
     return directions
 
 if __name__ == "__main__":
-    grid = load_map("/Users/jaiganesh/Github/project-raspi-codebase/automl/map.txt")      
+    grid = load_map("map.txt")      
     start = (0, 1)  # top-left
     goal = generate_random_goal(grid,start)   # bottom-right
 
