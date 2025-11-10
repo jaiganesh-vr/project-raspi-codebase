@@ -1,5 +1,6 @@
 from robot_hat.utils import reset_mcu
 from picarx import Picarx
+import readchar
 import time
 
 reset_mcu()
