@@ -32,8 +32,8 @@ def move_forward(px, duration=1.0, speed=DRIVE_SPEED):
 
 def turn_left(px, speed=TURN_SPEED):
     """Turn the car left by ~90 degrees."""
-    px.set_dir_servo_angle(-25)
-    time.sleep(0.5)
+    px.set_dir_servo_angle(-30)
+    time.sleep(0.25)
     px.forward(10)
     time.sleep(TURN_TIME_LEFT)
     px.stop()
