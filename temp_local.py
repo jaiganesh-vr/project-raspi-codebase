@@ -2,7 +2,7 @@ from picarx import Picarx
 import time
 
 speed = 0.001
-actions = ["right"]
+actions = ["left"]
 
 px = Picarx()
 
@@ -18,6 +18,17 @@ def move_right(speed):
     px.forward(speed)
     time.sleep(1)
     for angle in range(40, 0, -5):
+        px.set_dir_servo_angle(angle)
+        time.sleep(0.075)
+    px.stop 
+
+def move_left(speed):
+    for angle in range(0, -50, -5):
+        px.set_dir_servo_angle(angle)
+        time.sleep(0.075)
+    px.forward(speed)
+    time.sleep(1)
+    for angle in range(-50, 0, 5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.075)
     px.stop 
