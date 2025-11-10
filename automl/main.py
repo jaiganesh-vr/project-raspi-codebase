@@ -57,13 +57,13 @@ def reverse(px, speed=TURN_SPEED):
     px.set_dir_servo_angle(0)
 
 
-actions = ["left"]
+actions = ["end"]
 #actions = ["forward", "reverse", "right", "straight", "left", "straight", "stop"]
 
 try:
     while actions:  # runs while the list is not empty
         current_action = actions.pop(0)  # remove the first item
-        print(f"Executing: {1,"-",current_action}")
+        print(f"Executing: {current_action}")
         if current_action == "forward":
             move_forward(px)
             i += 1
