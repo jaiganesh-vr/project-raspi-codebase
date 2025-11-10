@@ -1,9 +1,6 @@
 import random
 from collections import deque
 
-facing = "up"
-
-
 def convert_absolute_to_relative(directions, initial_facing):
     """
     Converts absolute directions (from pathfinding) into
@@ -105,7 +102,7 @@ def path_to_directions(path):
 
 if __name__ == "__main__":
     grid = load_map("/Users/jaiganesh/Github/project-raspi-codebase/automl/map.txt")      
-    start = (5, 5)  # top-left
+    start = (0, 1)  # top-left
     goal = generate_random_goal(grid,start)   # bottom-right
 
     path = find_shortest_path(grid, start, goal)
