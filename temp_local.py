@@ -15,24 +15,29 @@ try:
             px.forward(speed)
             time.sleep(1)
             px.stop()
+            i += 1
         elif current_action == "left":
             for angle in range(0,35,10):
                 px.set_dir_servo_angle(angle)
             px.forward(speed)
             time.sleep(1)
             px.stop()
+            i += 1
         elif current_action == "right":
             for angle in range(0,35,10):
                 px.set_dir_servo_angle(angle)
             px.forward(speed)
             time.sleep(1)
             px.stop()
+            i += 1       
         elif current_action == "reverse":
             px.forward(-25)
             time.sleep(1)
+            i += 1
         elif current_action == "stop":
-             px.stop()
-        i += 1
+            px.stop()
+            i += 1
+
     print("All actions completed!")
 except Exception as e:    
         print("error:%s"%e)
