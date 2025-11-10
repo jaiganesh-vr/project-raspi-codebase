@@ -1,24 +1,59 @@
-# main.py
+from robot_hat.utils import reset_mcu
+from picarx import Picarx  
 import time
-from picarx import Picarx   # your hardware file (the big class you pasted)
-from driver import Driver
 
-if __name__ == "__main__":
-    px = Picarx()
-    driver = Driver(px)
+reset_mcu()
+time.sleep(2)
 
-    # Example 1: Explore
-    driver.set_speed(45)
-    driver.set_mode("Explore")
-    driver.perform_actions()
+i = 1
+speed = 25
 
-    time.sleep(1)
+px = Picarx()
+actions = ["forward"]
+#actions = ["forward", "right", "straight","forward"]
+#actions = ["forward", "reverse", "right", "straight", "left", "straight", "stop"]
 
-    # Example 2: Race (simulate upshift)
-    driver.set_mode("Race")
-    # driver.upshift()  # optionally adjust gear in driver before performing actions
-    driver.perform_actions()
+try:
+    while actions:  # runs while the list is not empty
+        print(i)
+        current_action = actions.pop(0)  # remove the first item
+        if current_action == "forward":
+            px.forward(speed)
+            time.sleep(2)
+            px.stop()
+            i += 1
+        elif current_action == "reverse":
+            px.forward(-25)
+            time.sleep(5)
+            px.stop()
+            i += 1
+        elif current_action == "right":
+            px.forward(speed)
+            for angle in range(0,35,5):
+                px.set_dir_servo_angle(angle)
+                time.sleep(0.075)
+            px.stop()
+            i += 1
+        elif current_action == "straight":
+            px.forward(speed)
+            for angle in range(35,-5,-5):
+                px.set_dir_servo_angle(angle)
+                time.sleep(0.075)
+            i += 1
+        elif current_action == "left":
+            px.forward(speed)
+            for angle in range(0,-35,-5):
+                px.set_dir_servo_angle(angle)
+                time.sleep(0.075)
+            i += 1
+        elif current_action == "stop":
+            px.stop()
+            i += 1
 
-    # Back to standby
-    driver.set_mode("StandBy")
-    print("Demo complete.")
+    print("All actions completed!")
+except Exception as e:    
+        print("error:%s"%e)
+finally:
+        px.stop()
+
+
