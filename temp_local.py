@@ -1,6 +1,7 @@
 from picarx import Picarx   # your hardware file (the big class you pasted)
 import time
 
+i = 1
 speed = 25
 px = Picarx()
 
@@ -8,7 +9,6 @@ actions = ["forward", "left", "right", "reverse", "stop"]
 
 try:
     while actions:  # runs while the list is not empty
-        i = 1
         print(i)
         current_action = actions.pop(0)  # remove the first item
         if current_action == "forward":
