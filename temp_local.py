@@ -8,7 +8,7 @@ time.sleep(2)
 
 TURN_SPEED = 40        # Moderate speed for turning
 DRIVE_SPEED = 60       # Normal forward driving speed
-TURN_TIME_90 = 1.0     # Seconds to complete a 90° turn (tune this!)
+TURN_TIME_90 = 1.25     # Seconds to complete a 90° turn (tune this!)
 TURN_TIME_180 = 2.2    # Seconds to complete a 180° turn (tune this!)
 
 speed = 1
