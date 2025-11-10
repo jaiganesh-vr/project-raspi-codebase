@@ -9,7 +9,7 @@ i = 1
 speed = 25
 
 px = Picarx()
-actions = ["forward", "right", "straight"]
+actions = ["forward", "right", "straight","forward"]
 #actions = ["forward", "reverse", "right", "straight", "left", "straight", "stop"]
 
 try:
