@@ -49,8 +49,6 @@ def main():
                     status = 'stop'
             # direction
             elif key in ('wsad'):
-                if speed == 0:
-                    speed = 10
                 if key == 'w':
                     actions.append('forward')
                 elif key == 'a':
@@ -64,7 +62,6 @@ def main():
                 status = 'stop'
         elif key == readchar.key.CTRL_C:
             print("Stopping")
-            px.stop()
             break 
     drive(actions,speed)        
 
