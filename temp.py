@@ -7,7 +7,7 @@ if __name__ == "__main__":
         # init picarx
         px = Picarx()
 
-        for x in range(0,100,10):
+        for x in range(-100,0,10):
             px.forward(x)
             print(x)
             time.sleep(10)
