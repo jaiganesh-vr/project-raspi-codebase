@@ -60,6 +60,7 @@ try:
             if path:
                 print("Path found:", path)
                 directions = navigator.path_to_directions(path)
+                print(directions)
                 relative_direction,facing = navigator.convert_absolute_to_relative(directions,facing)
                 actions.extend(relative_direction)
                 print("Directions:", relative_direction,facing)
