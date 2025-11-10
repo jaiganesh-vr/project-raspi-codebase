@@ -69,7 +69,7 @@ if __name__ == "__main__":
             if current_actions == "forward":
                 move_forward(px)
             elif current_actions == "reverse":
-                reverse(speed)
+                reverse(px)
             elif current_actions == "right":
                 turn_right(px)
             elif current_actions == "left":
