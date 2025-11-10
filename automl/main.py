@@ -56,7 +56,8 @@ try:
             path = navigator.find_shortest_path(grid, start, goal)
             if path:
                 print("Path found:", path)
-                irections = navigator.path_to_directions(path)
+                directions = navigator.path_to_directions(path)
+                actions.append(directions)
                 print("Directions:", directions)
                 start == goal
             else:
