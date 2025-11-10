@@ -9,6 +9,7 @@ time.sleep(2)
 i = 1
 speed = 0.001
 start = (5, 5) 
+facing = "up"
 
 px = Picarx()
 
@@ -58,7 +59,7 @@ try:
             if path:
                 print("Path found:", path)
                 directions = navigator.path_to_directions(path)
-                relative_direction = navigator.convert_absolute_to_relative(directions)
+                relative_direction,facing = navigator.convert_absolute_to_relative(directions,facing)
                 actions.extend(relative_direction)
                 print("Directions:", relative_direction)
                 print("Actions:",actions)
