@@ -9,14 +9,15 @@ px = Picarx()
 
 # --- Constants ---
 TURN_SPEED = 40         # Moderate speed for turning
-DRIVE_SPEED = 40        # Normal forward driving speed
+DRIVE_SPEED = 60        # Normal forward driving speed
 TURN_TIME_90 = 1.1      # Seconds to complete a 90° turn
 TURN_TIME_180 = 2.2     # Seconds to complete a 180° turn
 PAUSE_BETWEEN_ACTIONS = 1.5  # Seconds to pause after each action
 
 # --- Action List ---
 #actions = ["forward", "reverse", "left", "right"]
-actions = ["left"]
+#actions = ["left"]
+actions = ["right"]
 
 
 # --- Movement Functions ---
