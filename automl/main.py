@@ -7,7 +7,6 @@ import time
 i = 1
 reset_mcu()
 time.sleep(2)
-speed = 0.001
 start = (5, 5) 
 facing = "up"
 px = Picarx()
@@ -77,10 +76,7 @@ try:
             turn_left(px)
             i += 1
         elif current_action == "left":
-            px.forward(speed)
-            for angle in range(0,-35,-5):
-                px.set_dir_servo_angle(angle)
-                time.sleep(0.075)
+            turn_left(px)
             i += 1
         elif current_action == "stop":
             px.stop()
