@@ -14,7 +14,7 @@ actions = ["forward"]
 #actions = ["forward", "reverse", "right", "straight", "left", "straight", "stop"]
 
 try:
-    while actions:  # runs while the list is not empty
+    while True:  # runs while the list is not empty
         print(i)
         current_action = actions.pop(0)  # remove the first item
         if current_action == "forward":
