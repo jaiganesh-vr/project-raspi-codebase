@@ -7,7 +7,10 @@ reset_mcu()
 time.sleep(2)
 
 speed = 0.001
-actions = ["forward","left","right"]
+#actions = ["forward"]
+#actions = ["reverse"]
+#actions = ["right"]
+actions = ["left"]
 
 px = Picarx()
 
@@ -41,7 +44,6 @@ def move_left(speed):
 if __name__ == "__main__":
     try:
         while actions:
-            time.sleep(5)
             current_actions = actions.pop(0)
             if current_actions == "forward":
                 move_forward(speed)
