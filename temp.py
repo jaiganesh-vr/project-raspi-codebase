@@ -8,12 +8,13 @@ if __name__ == "__main__":
         px = Picarx()
 
         px.forward(50)
-        px.stop()
         time.sleep(5)
+        px.stop()
+
 
         px.forward(-50)
-        px.stop()
         time.sleep(5)
+        px.stop()
 
         px.set_dir_servo_angle(35)
         time.sleep(5)
