@@ -3,7 +3,7 @@ from picarx import Picarx
 import time
 
 reset_mcu()
-time.sleep(0.2)
+time.sleep(2)
 
 i = 1
 speed = 25
