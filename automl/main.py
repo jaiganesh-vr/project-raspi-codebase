@@ -7,7 +7,7 @@ reset_mcu()
 time.sleep(2)
 
 i = 1
-speed = 5
+speed = 0.05
 start = (5, 5) 
 
 px = Picarx()
