@@ -20,18 +20,21 @@ def move_forward(speed):
     px.stop
 
 def move_right(speed):
+    print("Steering Right")
     for angle in range(0, 50, 5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.075)
     px.forward(speed)
-    time.sleep(2.25)
+    time.sleep(1)
     px.stop()
     for angle in range(50, 0, -5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.075)
     px.set_dir_servo_angle(0)
+    print("Unsteering right")
 
 def move_left(speed):
+    print("Steering Left")
     for angle in range(0, -50, -5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.075)
@@ -42,6 +45,8 @@ def move_left(speed):
         px.set_dir_servo_angle(angle)
         time.sleep(0.075) 
     px.set_dir_servo_angle(0)
+    print("Unsteering Left")
+
 
 if __name__ == "__main__":
     try:
