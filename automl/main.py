@@ -53,20 +53,21 @@ try:
             px.stop()
             i += 1
         elif current_action == "end":
-            grid = navigator.load_map("map.txt")      
-            goal = navigator.generate_random_goal(grid,start)   # bottom-right
+            grid = navigator.load_map("map.txt")  
+            print(start)    
+            goal = navigator.generate_random_goal(grid,start)
             path = navigator.find_shortest_path(grid, start, goal)
             if path:
                 print("Path found:", path)
                 directions = navigator.path_to_directions(path)
                 relative_direction,facing = navigator.convert_absolute_to_relative(directions,facing)
                 actions.extend(relative_direction)
-                print("Directions:", relative_direction)
-                print("Actions:",actions)
+                print("Directions:", relative_direction,facing)
                 actions.append("end")
             else:
                 print("No path found.")
             start == goal
+            print(start)
     print("All actions completed!")
 except Exception as e:    
         print("error:%s"%e)
