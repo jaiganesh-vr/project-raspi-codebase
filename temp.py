@@ -8,7 +8,7 @@ time.sleep(0.2)
 px = Picarx()
 
 
-def drive( actions: List[str], speed):
+def drive(actions, speed):
     while actions:
         operate = actions.pop[0]
         if operate == 'stop':
@@ -30,7 +30,7 @@ def drive( actions: List[str], speed):
 
 def main():
     speed = 25
-    actions: List[str] = []
+    actions: list[str] = []
 
     while True:
         # readkey
