@@ -67,13 +67,13 @@ if __name__ == "__main__":
         while actions:
             current_actions = actions.pop(0)
             if current_actions == "forward":
-                move_forward(speed)
+                move_forward(px)
             elif current_actions == "reverse":
                 reverse(speed)
             elif current_actions == "right":
-                turn_right(speed)
+                turn_right(px)
             elif current_actions == "left":
-                turn_left(speed)
+                turn_left(px)
     finally:
         px.stop()
         time.sleep(0.2)
