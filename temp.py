@@ -32,8 +32,8 @@ def drive(actions, speed):
 def main():
     speed = 25
     actions: list[str] = []
-
-    while True:
+    n = 0
+    while n <= 5:
         print("Fetching Input")
         # readkey
         key = readchar.readkey().lower()
@@ -64,6 +64,7 @@ def main():
         elif key == 'p':
             print("Stopping")
             break 
+        n += 1   
     drive(actions,speed)        
 
 if __name__ == "__main__":
