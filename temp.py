@@ -9,6 +9,7 @@ if __name__ == "__main__":
 
         for x in range(0,100,10):
             px.forward(x)
+            print(x)
             time.sleep(10)
 
     finally:
