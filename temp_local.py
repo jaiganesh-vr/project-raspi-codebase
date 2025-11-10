@@ -35,7 +35,7 @@ try:
             i += 1
         elif current_action == "straight":
             px.forward(speed)
-            for angle in range(35,0,-5):
+            for angle in range(35,-5,-5):
                 px.set_dir_servo_angle(angle)
                 time.sleep(0.075)
             i += 1
