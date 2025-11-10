@@ -11,7 +11,7 @@ px = Picarx()
 TURN_SPEED = 40         # Moderate speed for turning
 DRIVE_SPEED = 60        # Normal forward driving speed
 TURN_TIME_RIGHT = 1.30      # Seconds to complete a 90° turn
-TURN_TIME_LEFT = 2.45      # Seconds to complete a 90° turn
+TURN_TIME_LEFT = 2.5      # Seconds to complete a 90° turn
 TURN_TIME_180 = 2.2     # Seconds to complete a 180° turn
 PAUSE_BETWEEN_ACTIONS = 1.5  # Seconds to pause after each action
 
