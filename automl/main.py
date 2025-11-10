@@ -62,6 +62,7 @@ try:
                 print("Directions:", directions)
                 print(actions)
                 start == goal
+                actions.append("end")
             else:
                 print("No path found.")
     print("All actions completed!")
