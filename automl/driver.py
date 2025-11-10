@@ -7,9 +7,7 @@ class Driver:
     VALID_MODES = ("StandBy", "Drive", "Race", "Explore")
 
     def __init__(self, px):
-        """
-        px: an instance of Picarx (your hardware interface)
-        """
+        
         self.px = px
         self.navigator = Navigator(px)
         self.mode = "StandBy"
