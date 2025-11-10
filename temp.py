@@ -13,15 +13,16 @@ if __name__ == "__main__":
         # test direction servo
         for angle in range(0, 35):
             px.set_dir_servo_angle(angle)
-            time.sleep(0.01)
+            time.sleep(0.1)
         for angle in range(35, -35, -1):
             px.set_dir_servo_angle(angle)
-            time.sleep(0.01)
+            time.sleep(0.1)
         for angle in range(-35, 0):
             px.set_dir_servo_angle(angle)
-            time.sleep(0.01)
+            time.sleep(0.1)
         px.stop()
         time.sleep(1)
+
         # test cam servos
         for angle in range(0, 35):
             px.set_cam_pan_angle(angle)
