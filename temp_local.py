@@ -11,12 +11,12 @@ def move_forward(speed):
     time.sleep(1)
     px.stop
 
-def move_reverse(speed):
-    for angle in range(0, 40, 5):
+def move_right(speed):
+    for angle in range(0, 50, 5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.075)
     px.forward(speed)
-    time.sleep(1)
+    time.sleep(1.25)
     for angle in range(40, 0, -5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.075)
