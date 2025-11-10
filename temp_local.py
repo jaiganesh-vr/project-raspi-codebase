@@ -17,7 +17,7 @@ PAUSE_BETWEEN_ACTIONS = 1.5  # Seconds to pause after each action
 
 # --- Action List ---
 #actions = ["forward", "reverse", "left", "right"]
-actions = ["left","left","left","left"]
+actions = ["left"]
 #actions = ["right", "right", "right", "right"]
 
 
