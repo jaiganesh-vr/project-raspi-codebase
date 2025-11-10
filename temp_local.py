@@ -2,7 +2,7 @@ from picarx import Picarx
 import time
 
 speed = 0.001
-actions = ["forward"]
+actions = ["reverse"]
 
 px = Picarx()
 
