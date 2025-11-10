@@ -66,7 +66,7 @@ try:
                 actions.append("end")
             else:
                 print("No path found.")
-            start == goal
+            start = goal
             print(start)
     print("All actions completed!")
 except Exception as e:    
