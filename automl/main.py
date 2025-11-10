@@ -58,7 +58,7 @@ try:
             if path:
                 print("Path found:", path)
                 directions = navigator.path_to_directions(path)
-                actions.append(directions)
+                actions.extend(directions)
                 print("Directions:", directions)
                 print(actions)
                 start == goal
