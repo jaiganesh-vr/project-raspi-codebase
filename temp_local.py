@@ -24,7 +24,7 @@ def move_right(speed):
         px.set_dir_servo_angle(angle)
         time.sleep(0.075)
     px.forward(speed)
-    time.sleep(0.25)
+    time.sleep(2.25)
     px.stop()
     for angle in range(50, 0, -5):
         px.set_dir_servo_angle(angle)
