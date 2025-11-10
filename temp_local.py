@@ -13,9 +13,9 @@ TURN_TIME_180 = 2.2    # Seconds to complete a 180° turn (tune this!)
 
 speed = 1
 #actions = ["forward"]
-actions = ["reverse"]
+#actions = ["reverse"]
 #actions = ["right"]
-#actions = ["forward", "reverse", "left", "right"]
+actions = ["forward", "reverse", "left", "right"]
 
 px = Picarx()
 
