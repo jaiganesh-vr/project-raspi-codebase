@@ -37,7 +37,7 @@ def move_left(speed):
     px.forward(speed)
     time.sleep(0.25)
     px.stop()
-    px.set_dir_server_angle(-45)
+    px.set_dir_servo_angle(-45)
     px.forward(speed)
     time.sleep(0.25)
     px.stop()
