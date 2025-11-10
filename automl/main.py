@@ -12,8 +12,8 @@ start = (5, 5)
 
 px = Picarx()
 
-#actions = ["end"]
-actions = ["forward", "reverse", "right", "straight", "left", "straight", "stop"]
+actions = ["end"]
+#actions = ["forward", "reverse", "right", "straight", "left", "straight", "stop"]
 
 try:
     while actions:  # runs while the list is not empty
@@ -25,8 +25,8 @@ try:
             px.stop()
             i += 1
         elif current_action == "reverse":
-            px.forward(-25)
-            time.sleep(5)
+            px.forward(-speed)
+            time.sleep(2)
             px.stop()
             i += 1
         elif current_action == "right":
@@ -58,9 +58,10 @@ try:
             if path:
                 print("Path found:", path)
                 directions = navigator.path_to_directions(path)
-                actions.extend(directions)
-                print("Directions:", directions)
-                print(actions)
+                relative_direction = navigator.convert_absolute_to_relative(directions)
+                actions.extend(relative_direction)
+                print("Directions:", relative_direction)
+                print("Actions:",actions)
                 start == goal
                 actions.append("end")
             else:
