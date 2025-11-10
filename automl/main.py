@@ -51,7 +51,7 @@ try:
             px.stop()
             i += 1
         elif current_action == "end":
-            grid = navigator.load_map("/Users/jaiganesh/Github/project-raspi-codebase/automl/map.txt")      
+            grid = navigator.load_map("map.txt")      
             goal = navigator.generate_random_goal(grid,start)   # bottom-right
             path = navigator.find_shortest_path(grid, start, goal)
             if path:
