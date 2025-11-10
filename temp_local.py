@@ -10,7 +10,7 @@ speed = 25
 
 px = Picarx()
 
-actions = ["forward", "left", "right", "reverse", "stop"]
+actions = ["forward", "reverse", "right", "straight", "left",  "stop"]
 
 try:
     while actions:  # runs while the list is not empty
