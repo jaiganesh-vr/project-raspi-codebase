@@ -58,7 +58,7 @@ def reverse(px, speed=TURN_SPEED):
     px.set_dir_servo_angle(0)
 
 
-actions = ["left"]
+actions = ["left", "left", "left","left"]
 #actions = ["forward", "reverse", "right", "straight", "left", "straight", "stop"]
 
 try:
