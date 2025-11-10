@@ -39,16 +39,16 @@ if __name__ == "__main__":
             current_actions = actions.pop(0)
             if current_actions == "forward":
                 move_forward(speed)
-                time.sleep(1)
+                time.sleep(5)
             elif current_actions == "reverse":
                 move_reverse(speed)
-                time.sleep(1)
+                time.sleep(5)
             elif current_actions == "right":
                 move_right(speed)
-                time.sleep(1)
+                time.sleep(5)
             elif current_actions == "left":
                 move_left(speed)
-                time.sleep(1)
+                time.sleep(5)
     finally:
         px.stop()
         time.sleep(0.2)
