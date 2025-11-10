@@ -6,7 +6,7 @@ reset_mcu()
 time.sleep(2)
 
 i = 1
-speed = 25
+speed = 10
 
 px = Picarx()
 actions = ["forward"]
