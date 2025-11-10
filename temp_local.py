@@ -17,16 +17,12 @@ try:
             px.stop()
             i += 1
         elif current_action == "left":
-            for angle in range(0,35,10):
-                px.set_dir_servo_angle(angle)
-            px.forward(speed)
+            px.set_dir_servo_angle(-30)
             time.sleep(1)
             px.stop()
             i += 1
         elif current_action == "right":
-            for angle in range(0,35,10):
-                px.set_dir_servo_angle(angle)
-            px.forward(speed)
+            px.set_dir_servo_angle(30)
             time.sleep(1)
             px.stop()
             i += 1       
