@@ -1,5 +1,6 @@
 from robot_hat.utils import reset_mcu
 from picarx import Picarx  
+import navigator
 import time
 
 reset_mcu()
@@ -7,11 +8,11 @@ time.sleep(2)
 
 i = 1
 speed = 10
+start = (5, 5) 
 
 px = Picarx()
-actions = ["forward"]
-#actions = ["forward", "right", "straight","forward"]
-#actions = ["forward", "reverse", "right", "straight", "left", "straight", "stop"]
+
+actions = ["forward", "reverse", "right", "straight", "left", "straight", "stop","end"]
 
 try:
     while actions:  # runs while the list is not empty
@@ -49,7 +50,17 @@ try:
         elif current_action == "stop":
             px.stop()
             i += 1
-
+        elif current_action == "end":
+            grid = navigator.load_map("/Users/jaiganesh/Github/project-raspi-codebase/automl/map.txt")      
+            goal = navigator.generate_random_goal(grid,start)   # bottom-right
+            path = navigator.find_shortest_path(grid, start, goal)
+            if path:
+                print("Path found:", path)
+                irections = navigator.path_to_directions(path)
+                print("Directions:", directions)
+                start == goal
+            else:
+                print("No path found.")
     print("All actions completed!")
 except Exception as e:    
         print("error:%s"%e)
