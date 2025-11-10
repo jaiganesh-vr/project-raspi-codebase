@@ -65,6 +65,8 @@ try:
                 actions.append("end")
             else:
                 print("No path found.")
+        reset_mcu()
+        time.sleep(10)
     print("All actions completed!")
 except Exception as e:    
         print("error:%s"%e)
