@@ -34,6 +34,7 @@ def main():
     actions: list[str] = []
 
     while True:
+        print("Fetching Input")
         # readkey
         key = readchar.readkey().lower()
         # operation 
