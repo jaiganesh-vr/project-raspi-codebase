@@ -10,7 +10,8 @@ px = Picarx()
 # --- Constants ---
 TURN_SPEED = 40         # Moderate speed for turning
 DRIVE_SPEED = 60        # Normal forward driving speed
-TURN_TIME_90 = 1.35      # Seconds to complete a 90° turn
+TURN_TIME_RIGHT = 1.35      # Seconds to complete a 90° turn
+TURN_TIME_LEFT = 1.5      # Seconds to complete a 90° turn
 TURN_TIME_180 = 2.2     # Seconds to complete a 180° turn
 PAUSE_BETWEEN_ACTIONS = 1.5  # Seconds to pause after each action
 
@@ -33,7 +34,7 @@ def turn_left(px, speed=TURN_SPEED):
     """Turn the car left by ~90 degrees."""
     px.set_dir_servo_angle(-30)
     px.forward(speed)
-    time.sleep(TURN_TIME_90)
+    time.sleep(TURN_TIME_LEFT)
     px.stop()
     px.set_dir_servo_angle(0)
 
@@ -42,7 +43,7 @@ def turn_right(px, speed=TURN_SPEED):
     """Turn the car right by ~90 degrees."""
     px.set_dir_servo_angle(30)
     px.forward(speed)
-    time.sleep(TURN_TIME_90)
+    time.sleep(TURN_TIME_RIGHT)
     px.stop()
     px.set_dir_servo_angle(0)
 
