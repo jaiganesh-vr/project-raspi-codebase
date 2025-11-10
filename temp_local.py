@@ -29,7 +29,7 @@ def move_right(speed):
     for angle in range(50, 0, -5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.075)
-    px.set_dir_serv0_angle(0)
+    px.set_dir_servo_angle(0)
 
 def move_left(speed):
     for angle in range(0, -50, -5):
@@ -41,7 +41,7 @@ def move_left(speed):
     for angle in range(-50, 0, 5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.075) 
-    px.set_dir_serv0_angle(0)
+    px.set_dir_servo_angle(0)
 
 if __name__ == "__main__":
     try:
