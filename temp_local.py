@@ -1,60 +1,52 @@
 from robot_hat.utils import reset_mcu
 from picarx import Picarx
-
 import time
 
+# --- Initialization ---
 reset_mcu()
 time.sleep(2)
-
-TURN_SPEED = 30        # Moderate speed for turning
-DRIVE_SPEED = 40       # Normal forward driving speed
-TURN_TIME_90 = 1.1     # Seconds to complete a 90° turn (tune this!)
-TURN_TIME_180 = 2.2    # Seconds to complete a 180° turn (tune this!)
-
-speed = 1
-#actions = ["forward"]
-#actions = ["reverse"]
-#actions = ["right"]
-actions = ["forward", "reverse", "left", "right"]
-
 px = Picarx()
 
+# --- Constants ---
+TURN_SPEED = 40         # Moderate speed for turning
+DRIVE_SPEED = 60        # Normal forward driving speed
+TURN_TIME_90 = 1.1      # Seconds to complete a 90° turn
+TURN_TIME_180 = 2.2     # Seconds to complete a 180° turn
+PAUSE_BETWEEN_ACTIONS = 1.5  # Seconds to pause after each action
+
+# --- Action List ---
+actions = ["forward", "reverse", "left", "right"]
+
+
+# --- Movement Functions ---
 def move_forward(px, duration=1.0, speed=DRIVE_SPEED):
-    """
-    Move forward for a specified duration.
-    """
+    """Move forward for a specified duration."""
     px.set_dir_servo_angle(0)
     px.forward(speed)
     time.sleep(duration)
     px.stop()
 
+
 def turn_left(px, speed=TURN_SPEED):
-    """
-    Turn the car left by ~90 degrees.
-    """
-    # Turn wheels left
+    """Turn the car left by ~90 degrees."""
     px.set_dir_servo_angle(-30)
-    # Drive forward briefly to pivot
     px.forward(speed)
     time.sleep(TURN_TIME_90)
     px.stop()
-    # Reset steering
     px.set_dir_servo_angle(0)
 
+
 def turn_right(px, speed=TURN_SPEED):
-    """
-    Turn the car right by ~90 degrees.
-    """
+    """Turn the car right by ~90 degrees."""
     px.set_dir_servo_angle(30)
     px.forward(speed)
     time.sleep(TURN_TIME_90)
     px.stop()
     px.set_dir_servo_angle(0)
 
+
 def reverse(px, speed=TURN_SPEED):
-    """
-    Turn 180 degrees to face the opposite direction.
-    """
+    """Turn 180 degrees to face the opposite direction."""
     px.set_dir_servo_angle(30)   # full right
     px.forward(speed)
     time.sleep(TURN_TIME_180)
@@ -62,20 +54,28 @@ def reverse(px, speed=TURN_SPEED):
     px.set_dir_servo_angle(0)
 
 
+# --- Main Execution Loop ---
 if __name__ == "__main__":
     try:
         while actions:
-            current_actions = actions.pop(0)
-            if current_actions == "forward":
+            current_action = actions.pop(0)
+            print(f"Executing: {current_action}")
+
+            if current_action == "forward":
                 move_forward(px)
-            elif current_actions == "reverse":
+            elif current_action == "reverse":
                 reverse(px)
-            elif current_actions == "right":
+            elif current_action == "right":
                 turn_right(px)
-            elif current_actions == "left":
+            elif current_action == "left":
                 turn_left(px)
+
+            # Pause between steps
+            print(f"Pausing for {PAUSE_BETWEEN_ACTIONS} seconds...\n")
+            px.stop()
+            time.sleep(PAUSE_BETWEEN_ACTIONS)
+
     finally:
+        print("Stopping motors and resetting.")
         px.stop()
-        time.sleep(0.2)
-
-
+        time.sleep(0.5)
