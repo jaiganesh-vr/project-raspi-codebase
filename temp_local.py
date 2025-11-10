@@ -15,7 +15,8 @@ TURN_TIME_180 = 2.2     # Seconds to complete a 180° turn
 PAUSE_BETWEEN_ACTIONS = 1.5  # Seconds to pause after each action
 
 # --- Action List ---
-actions = ["forward", "reverse", "left", "right"]
+#actions = ["forward", "reverse", "left", "right"]
+actions = ["left"]
 
 
 # --- Movement Functions ---
