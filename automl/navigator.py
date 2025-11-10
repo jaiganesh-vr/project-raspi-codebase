@@ -1,16 +1,18 @@
 import random
 from collections import deque
 
-def convert_absolute_to_relative(directions, initial_facing="up"):
+facing = "up"
+
+
+def convert_absolute_to_relative(directions, initial_facing):
     """
     Converts absolute directions (from pathfinding) into
     relative movement commands (for a robot).
     """
     # Order of directions (clockwise)
     order = ["up", "right", "down", "left"]
-
-    # Robot starts facing this way
     facing = initial_facing
+    # Robot starts facing this way
     rel_moves = []
 
     for d in directions:
@@ -32,7 +34,7 @@ def convert_absolute_to_relative(directions, initial_facing="up"):
             rel_moves.append("forward")
             facing = d  # update facing direction
 
-    return rel_moves
+    return rel_moves,facing
 
 def generate_random_goal(grid, start):
     """
@@ -110,9 +112,9 @@ if __name__ == "__main__":
     if path:
         print("Path found:", path)
         directions = path_to_directions(path)
-        relative_directions = convert_absolute_to_relative(directions)
+        relative_directions, facing = convert_absolute_to_relative(directions,facing)
         print("Directions:", directions)
-        print("Relative Directions:", relative_directions)
+        print("Relative Directions:", relative_directions,facing)
         start == goal
     else:
         print("No path found.")
