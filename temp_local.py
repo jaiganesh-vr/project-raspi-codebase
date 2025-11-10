@@ -18,12 +18,12 @@ try:
         current_action = actions.pop(0)  # remove the first item
         if current_action == "forward":
             px.forward(speed)
-            time.sleep(1)
+            time.sleep(5)
             px.stop()
             i += 1
         elif current_action == "reverse":
             px.forward(-25)
-            time.sleep(1)
+            time.sleep(5)
             px.stop()
             i += 1
         elif current_action == "right":
