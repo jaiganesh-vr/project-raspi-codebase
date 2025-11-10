@@ -4,7 +4,7 @@ import readchar
 import time
 
 reset_mcu()
-time.sleep(0.2)
+time.sleep(2)
 
 px = Picarx()
 
@@ -61,7 +61,7 @@ def main():
             # stop
             elif key == 'f':
                 status = 'stop'
-        elif key == readchar.key.CTRL_C:
+        elif key == 'p':
             print("Stopping")
             break 
     drive(actions,speed)        
