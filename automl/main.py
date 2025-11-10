@@ -12,8 +12,8 @@ start = (5, 5)
 
 px = Picarx()
 
-actions = ["end"]
-#actions = ["forward", "reverse", "right", "straight", "left", "straight", "stop","end"]
+#actions = ["end"]
+actions = ["forward", "reverse", "right", "straight", "left", "straight", "stop"]
 
 try:
     while actions:  # runs while the list is not empty
