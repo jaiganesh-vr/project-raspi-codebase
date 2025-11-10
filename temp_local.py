@@ -1,5 +1,10 @@
+from robot_hat.utils import reset_mcu
 from picarx import Picarx
+
 import time
+
+reset_mcu()
+time.sleep(2)
 
 speed = 0.001
 actions = ["forward","left","right"]
