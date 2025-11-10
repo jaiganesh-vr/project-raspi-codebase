@@ -10,7 +10,7 @@ speed = 0.001
 #actions = ["forward"]
 #actions = ["reverse"]
 #actions = ["right"]
-actions = ["left"]
+actions = ["left", "forward", "right", "forward"]
 
 px = Picarx()
 
