@@ -1,6 +1,39 @@
 import random
 from collections import deque
 
+def convert_absolute_to_relative(directions, initial_facing="up"):
+    """
+    Converts absolute directions (from pathfinding) into
+    relative movement commands (for a robot).
+    """
+    # Order of directions (clockwise)
+    order = ["up", "right", "down", "left"]
+
+    # Robot starts facing this way
+    facing = initial_facing
+    rel_moves = []
+
+    for d in directions:
+        if d == facing:
+            rel_moves.append("forward")
+        else:
+            # figure out rotation needed
+            current_idx = order.index(facing)
+            target_idx = order.index(d)
+            diff = (target_idx - current_idx) % 4
+
+            if diff == 1:
+                rel_moves.append("right")
+            elif diff == 3:
+                rel_moves.append("left")
+            elif diff == 2:
+                rel_moves.append("reverse")
+            
+            rel_moves.append("forward")
+            facing = d  # update facing direction
+
+    return rel_moves
+
 def generate_random_goal(grid, start):
     """
     Generate a random goal position (r, c) on the grid that:
@@ -19,7 +52,9 @@ def generate_random_goal(grid, start):
         raise ValueError("No valid goal positions available!")
 
     goal = random.choice(free_cells)
+    print(f"🎯 From the location: {start}")
     print(f"🎯 New goal selected: {goal}")
+
     return goal
 
 def load_map(filename):
@@ -61,9 +96,9 @@ def path_to_directions(path):
         elif r2 == r1 and c2 == c1 - 1:
             directions.append("left")
         elif r2 == r1 + 1 and c2 == c1:
-            directions.append("reverse")  # or forward if you like
+            directions.append("down")  # or forward if you like
         elif r2 == r1 - 1 and c2 == c1:
-            directions.append("forward")
+            directions.append("up")
     return directions
 
 if __name__ == "__main__":
@@ -75,7 +110,9 @@ if __name__ == "__main__":
     if path:
         print("Path found:", path)
         directions = path_to_directions(path)
+        relative_directions = convert_absolute_to_relative(directions)
         print("Directions:", directions)
+        print("Relative Directions:", relative_directions)
         start == goal
     else:
         print("No path found.")
