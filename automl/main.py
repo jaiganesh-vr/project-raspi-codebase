@@ -63,10 +63,10 @@ try:
                 actions.extend(relative_direction)
                 print("Directions:", relative_direction)
                 print("Actions:",actions)
-                start == goal
                 actions.append("end")
             else:
                 print("No path found.")
+            start == goal
     print("All actions completed!")
 except Exception as e:    
         print("error:%s"%e)
