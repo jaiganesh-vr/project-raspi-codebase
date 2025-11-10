@@ -27,38 +27,44 @@ def move_forward(px, duration=1.0, speed=DRIVE_SPEED):
     time.sleep(duration)
     px.stop()
 
-
 def turn_left(px, speed=TURN_SPEED):
     """Turn the car left by ~90 degrees."""
     for angle in range(0, -32, -2):
         px.set_dir_servo_angle(angle)
-        time.sleep(0.050)
+        time.sleep(0.1)
     px.forward(10)
     time.sleep(TURN_TIME_LEFT)
     px.stop()
     for angle in range(-32, 6, 2):
         px.set_dir_servo_angle(angle)
-        time.sleep(0.050)
+        time.sleep(0.1)
 
 def turn_right(px, speed=TURN_SPEED):
     """Turn the car right by ~90 degrees."""
-    px.set_dir_servo_angle(30)
+    for angle in range(0, 30, 2):
+        px.set_dir_servo_angle(angle)
+        time.sleep(0.1)    
     px.forward(speed)
     time.sleep(TURN_TIME_RIGHT)
     px.stop()
-    px.set_dir_servo_angle(0)
-
+    for angle in range(30, 0, -2):
+        px.set_dir_servo_angle(angle)
+        time.sleep(0.1)   
 
 def reverse(px, speed=TURN_SPEED):
     """Turn 180 degrees to face the opposite direction."""
-    px.set_dir_servo_angle(30)   # full right
+    for angle in range(0, 30, 2):
+        px.set_dir_servo_angle(angle)
+        time.sleep(0.1)       
     px.forward(speed)
     time.sleep(TURN_TIME_180)
     px.stop()
-    px.set_dir_servo_angle(0)
+    for angle in range(30, 0, -2):
+        px.set_dir_servo_angle(angle)
+        time.sleep(0.1)   
 
 
-actions = ["left", "left", "left","left"]
+actions = ["left", "right", "reverse","forward"]
 #actions = ["forward", "reverse", "right", "straight", "left", "straight", "stop"]
 
 try:
