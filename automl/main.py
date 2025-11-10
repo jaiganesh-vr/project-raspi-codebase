@@ -30,13 +30,15 @@ def move_forward(px, duration=1.0, speed=DRIVE_SPEED):
 
 def turn_left(px, speed=TURN_SPEED):
     """Turn the car left by ~90 degrees."""
-    px.set_dir_servo_angle(-22)
-    time.sleep(0.25)
+    for angle in range(0, 32, 2):
+        px.set_dir_servo_angle(angle)
+        time.sleep(0.075)
     px.forward(10)
     time.sleep(TURN_TIME_LEFT)
     px.stop()
-    px.set_dir_servo_angle(0)
-
+    for angle in range(-32, 0, -2):
+        px.set_dir_servo_angle(angle)
+        time.sleep(0.075)
 
 def turn_right(px, speed=TURN_SPEED):
     """Turn the car right by ~90 degrees."""
