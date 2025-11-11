@@ -63,7 +63,7 @@ def reverse(px, speed=TURN_SPEED):
     time.sleep(TURN_TIME_RIGHT)
     px.stop()
 
-    for angle in range(32, -32 -2):
+    for angle in range(32, -32, -2):
         px.set_dir_servo_angle(angle)
         time.sleep(0.1)
     px.set_motor_speed(1, 0)      
