@@ -12,7 +12,7 @@ px = Picarx()
 
 # --- Constants ---
 TURN_SPEED = 10         # Moderate speed for turning
-TURN_TIME_RIGHT = 1.6      # Seconds to complete a 90° turn
+TURN_TIME_LEFT = 1.6      # Seconds to complete a 90° turn
 
 # --- Movement Functions ---
 
