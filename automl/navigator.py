@@ -27,7 +27,8 @@ def convert_absolute_to_relative(directions, initial_facing):
                 rel_moves.append("left")
             elif diff == 2:
                 rel_moves.append("reverse")
-            
+                        
+            rel_moves.append("forward")
             facing = d  # update facing direction
 
     return rel_moves,facing
