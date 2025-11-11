@@ -27,12 +27,12 @@ def move_forward(px, duration=1.0, speed=DRIVE_SPEED):
 
 def turn_left(px, speed=TURN_SPEED):
     """Turn the car left by ~90 degrees."""
-    px.set_motor_speed(1, 0)       # left wheel stopped
-    px.set_motor_speed(2, -speed) 
     for angle in range(0, -35, -5):
         px.set_dir_servo_angle(angle)
-        time.sleep(0.115)
-    time.sleep(0.115)    
+        time.sleep(0.110)
+    px.set_motor_speed(1, 0)       # left wheel stopped
+    px.set_motor_speed(2, -speed)     
+    time.sleep(0.825)    
     px.stop()
     for angle in range(-32, 0, 2):
         px.set_dir_servo_angle(angle)
