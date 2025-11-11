@@ -12,7 +12,7 @@ facing = "up"
 px = Picarx()
 
 # --- Constants ---
-TURN_SPEED = 40         # Moderate speed for turning
+TURN_SPEED = 30         # Moderate speed for turning
 DRIVE_SPEED = 30        # Normal forward driving speed
 TURN_TIME_RIGHT = 1.30      # Seconds to complete a 90° turn
 TURN_TIME_LEFT = 2      # Seconds to complete a 90° turn
