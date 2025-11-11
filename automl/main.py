@@ -2,7 +2,7 @@ from picarx import Picarx
 import driver
 
 px = Picarx()
-actions = ["right"]
+actions = ["left"]
 #actions = ["right","forward"]
 #actions = ["left", "right", "reverse","forward"]
 #actions = ["forward", "reverse", "right", "straight", "left", "straight", "stop"]
