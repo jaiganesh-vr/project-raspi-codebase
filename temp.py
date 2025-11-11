@@ -37,7 +37,7 @@ def turn_right(px, speed=TURN_SPEED):
         time.sleep(0.25)
     for angle in range(30, 0, -2):
         px.set_dir_servo_angle(angle)
-        time.sleep(0.25)   
+        time.sleep(0.01)   
 
 actions = ["right"]
 
