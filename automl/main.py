@@ -12,7 +12,7 @@ facing = "up"
 px = Picarx()
 
 # --- Constants ---
-TURN_SPEED = 30         # Moderate speed for turning
+TURN_SPEED = 10         # Moderate speed for turning
 DRIVE_SPEED = 30        # Normal forward driving speed
 TURN_TIME_RIGHT = 1.6      # Seconds to complete a 90° turn
 TURN_TIME_LEFT = 1.6      # Seconds to complete a 90° turn
@@ -29,45 +29,45 @@ def move_forward(px, duration=1.0, speed=DRIVE_SPEED):
 
 def turn_left(px, speed=TURN_SPEED):
     """Turn the car left by ~90 degrees."""
-    for angle in range(0, -32, -2):
-        px.set_dir_servo_angle(angle)
-        time.sleep(0.001)
     px.set_motor_speed(1, 0)       # left wheel stopped
-    px.set_motor_speed(2, -speed) 
-    time.sleep(TURN_TIME_LEFT)
-    px.stop()
-    for angle in range(-32, 6, 2):
+    px.set_motor_speed(2, -speed*2) 
+    for angle in range(0, -35, -5):
         px.set_dir_servo_angle(angle)
-        time.sleep(0.001)
+        time.sleep(0.25)
+    time.sleep(0.25)    
+    px.stop()
+    for angle in range(-32, 0, 2):
+        px.set_dir_servo_angle(angle)
+        time.sleep(0.01)   
 
 def turn_right(px, speed=TURN_SPEED):
-    """Turn the car right by ~90 degrees."""
-    for angle in range(0, 32, 2):
-        px.set_dir_servo_angle(angle)
-        time.sleep(0.001)    
+    """Turn the car left by ~90 degrees."""
     px.set_motor_speed(1, speed)   # left wheel active
-    px.set_motor_speed(2, 0)      
-    time.sleep(TURN_TIME_RIGHT)
-    px.stop()
-    for angle in range(32, 0, -2):
+    px.set_motor_speed(2, 0)   
+    for angle in range(0, 35, 5):
         px.set_dir_servo_angle(angle)
-        time.sleep(0.001)   
+        time.sleep(0.125)
+    time.sleep(0.125)
+    px.stop()
+    for angle in range(30, 0, -2):
+        px.set_dir_servo_angle(angle)
+        time.sleep(0.01)   
 
 def reverse(px, speed=TURN_SPEED):
-    """Turn 180 degrees to face the opposite direction."""
-    for angle in range(0, 32, 2):
+    """Turn the car left by ~90 degrees."""
+    px.set_motor_speed(1, -speed)   # left wheel active
+    px.set_motor_speed(2, 0)   
+    for angle in range(0, 35, 5):
         px.set_dir_servo_angle(angle)
-        time.sleep(0.001)       
-    px.set_motor_speed(1, speed)   # left wheel active
-    px.set_motor_speed(2, 0)     
-    time.sleep(TURN_TIME_180)
+        time.sleep(0.285)
+    time.sleep(0.285)
     px.stop()
-    for angle in range(32, 0, -2):
+    for angle in range(30, 0, -2):
         px.set_dir_servo_angle(angle)
-        time.sleep(0.001)   
+        time.sleep(0.01)  
 
-actions = ["end"]
-#actions = ["right","forward"]
+#actions = ["end"]
+actions = ["right","forward"]
 #actions = ["left", "right", "reverse","forward"]
 #actions = ["forward", "reverse", "right", "straight", "left", "straight", "stop"]
 
