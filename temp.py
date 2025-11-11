@@ -34,10 +34,10 @@ def turn_right(px, speed=TURN_SPEED):
     """Turn the car left by ~90 degrees."""
     for angle in range(0, 32, 2):
         px.set_dir_servo_angle(angle)
-        time.sleep(1)
+        time.sleep(0.25)
     for angle in range(30, 0, -2):
         px.set_dir_servo_angle(angle)
-        time.sleep(1)   
+        time.sleep(0.25)   
 
 actions = ["right"]
 
