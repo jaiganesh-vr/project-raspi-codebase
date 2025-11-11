@@ -73,9 +73,7 @@ def drive(px,actions):
             move_forward(px)
             i += 1
         elif current_action == "reverse":
-            #reverse(px)
-            turn_right(px)
-            turn_right(px)
+            reverse(px)
             i += 1
         elif current_action == "right":
             turn_right(px)
