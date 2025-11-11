@@ -43,7 +43,7 @@ def turn_right(px, speed=TURN_SPEED):
         px.set_dir_servo_angle(angle)
         time.sleep(0.01)   
 
-actions = ["right"]
+actions = ["right", "right", "right", "right", "left", "left", "left", "left"]
 
 try:
     while actions:  # runs while the list is not empty
