@@ -15,7 +15,7 @@ DRIVE_SPEED = 10        # Normal forward driving speed
 TURN_TIME_RIGHT = 1.6      # Seconds to complete a 90° turn
 TURN_TIME_LEFT = 1.6      # Seconds to complete a 90° turn
 TURN_TIME_180 = 3.2     # Seconds to complete a 180° turn
-PAUSE_BETWEEN_ACTIONS = 0  # Seconds to pause after each action
+PAUSE_BETWEEN_ACTIONS = 1  # Seconds to pause after each action
 
 # --- Movement Functions ---
 def move_forward(px, duration=1.0, speed=DRIVE_SPEED):
