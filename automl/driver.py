@@ -55,7 +55,7 @@ def reverse(px, speed=TURN_SPEED):
     """Turn the car left by ~90 degrees.""" 
     for angle in range(0, 35, 5):
         px.set_dir_servo_angle(angle)
-        time.sleep(0.285)
+        time.sleep(0.110)
     px.set_motor_speed(1, speed)   # left wheel active
     px.set_motor_speed(2, 0)  
     time.sleep(1.650)
