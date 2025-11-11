@@ -40,7 +40,7 @@ def turn_right(px, speed=TURN_SPEED):
         time.sleep(0.01)
     time.sleep(0.25)    
     px.stop()
-    for angle in range(32, 0, 2):
+    for angle in range(35, 0, 2):
         px.set_dir_servo_angle(angle)
         time.sleep(0.01)   
 
