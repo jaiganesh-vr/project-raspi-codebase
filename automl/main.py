@@ -32,7 +32,7 @@ def turn_left(px, speed=TURN_SPEED):
     for angle in range(0, -32, -2):
         px.set_dir_servo_angle(angle)
         time.sleep(0.1)
-    px.set_motor_speed(1, 0)       # left wheel stopped
+    px.set_motor_speed(1, 0.00000001)       # left wheel stopped
     px.set_motor_speed(2, -speed) 
     time.sleep(TURN_TIME_LEFT)
     px.stop()
