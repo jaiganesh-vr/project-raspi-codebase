@@ -1,6 +1,5 @@
 from robot_hat.utils import reset_mcu
 from picarx import Picarx  
-import navigator
 import time
 
 # --- Initialization ---
