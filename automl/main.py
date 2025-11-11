@@ -42,7 +42,7 @@ def turn_left(px, speed=TURN_SPEED):
 
 def turn_right(px, speed=TURN_SPEED):
     """Turn the car right by ~90 degrees."""
-    for angle in range(0, 26, 2):
+    for angle in range(0, 32, 2):
         px.set_dir_servo_angle(angle)
         time.sleep(0.1)    
     px.set_motor_speed(1, speed)   # left wheel active
