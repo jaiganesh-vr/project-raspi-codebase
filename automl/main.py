@@ -55,17 +55,17 @@ def turn_right(px, speed=TURN_SPEED):
 
 def reverse(px, speed=TURN_SPEED):
     """Turn 180 degrees to face the opposite direction."""
-    for angle in range(0, 30, 2):
+    for angle in range(0, 32, 2):
         px.set_dir_servo_angle(angle)
         time.sleep(0.1)       
     px.forward(speed)
     time.sleep(TURN_TIME_180)
     px.stop()
-    for angle in range(30, 0, -2):
+    for angle in range(32, 0, -2):
         px.set_dir_servo_angle(angle)
         time.sleep(0.1)   
 
-actions = ["right"]
+actions = ["reverse"]
 #actions = ["left", "right", "reverse","forward"]
 #actions = ["forward", "reverse", "right", "straight", "left", "straight", "stop"]
 
