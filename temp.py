@@ -30,7 +30,7 @@ def turn_left(px, speed=TURN_SPEED):
         px.set_dir_servo_angle(angle)
         time.sleep(0.01)   
 
-def turn_left(px, speed=TURN_SPEED):
+def turn_right(px, speed=TURN_SPEED):
     """Turn the car left by ~90 degrees."""
 
     px.set_motor_speed(1, speed)       # left wheel stopped
