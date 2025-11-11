@@ -16,7 +16,7 @@ TURN_SPEED = 30         # Moderate speed for turning
 DRIVE_SPEED = 30        # Normal forward driving speed
 TURN_TIME_RIGHT = 2      # Seconds to complete a 90° turn
 TURN_TIME_LEFT = 1.5      # Seconds to complete a 90° turn
-TURN_TIME_180 = 4     # Seconds to complete a 180° turn
+TURN_TIME_180 = 3     # Seconds to complete a 180° turn
 PAUSE_BETWEEN_ACTIONS = 1  # Seconds to pause after each action
 
 # --- Movement Functions ---
