@@ -1,41 +1,60 @@
 from picarx import Picarx
 import time
 
-# === Constants ===
-SPEED = 50            # Motor speed (0–100)
-ROTATION_TIME = 0.7   # Approx time (in seconds) for one full wheel rotation at SPEED
-                      # <-- You’ll need to measure & tune this value manually
+# === CONFIGURATION ===
+SPEED = 50             # Speed (0–100)
+ROTATION_TIME = 0.8    # Seconds per wheel rotation (you will calibrate this)
+PAUSE = 1.0            # Pause between operations
 
 px = Picarx()
 
 def rotate_wheel(px, wheel='left', rotations=1, speed=SPEED):
     """
-    Spins a specified wheel for a certain number of rotations.
-    Since Picar-X lacks encoders, this uses a time estimate.
+    Spins one wheel for an estimated number of rotations.
+    This version includes printouts and calibration-friendly timing.
     """
+    # Estimated duration per rotation
     duration = rotations * ROTATION_TIME
-    print(f"Rotating {wheel} wheel for {rotations} rotations (~{duration:.2f}s)...")
 
-    # Choose which wheel to activate
-    if wheel.lower() == 'left':
-        px.set_motor_speed(1, speed)
-        px.set_motor_speed(2, 0)
-    elif wheel.lower() == 'right':
-        px.set_motor_speed(1, 0)
-        px.set_motor_speed(2, -speed)  # adjust sign if reversed
-    else:
+    # Sanity checks
+    wheel = wheel.lower()
+    if wheel not in ['left', 'right']:
         raise ValueError("Wheel must be 'left' or 'right'")
+
+    print(f"\n➡️  Rotating {wheel.upper()} wheel: {rotations} rotations (~{duration:.2f}s)")
+
+    # Stop all first (good safety habit)
+    px.stop()
+    time.sleep(0.2)
+
+    if wheel == 'left':
+        px.set_motor_speed(1, speed)   # left wheel
+        px.set_motor_speed(2, 0)       # right wheel off
+    else:
+        px.set_motor_speed(1, 0)
+        px.set_motor_speed(2, -speed)  # right wheel (direction may need flipping)
 
     time.sleep(duration)
     px.stop()
-
+    print(f"✅  {wheel.upper()} wheel stopped.\n")
 
 if __name__ == "__main__":
     try:
-        # Example: make the left wheel rotate twice, then the right wheel once
+        print("Starting rotation test...")
+        time.sleep(2)
+
+        # Test left wheel for 2 rotations
         rotate_wheel(px, 'left', rotations=2)
-        time.sleep(1)
-        rotate_wheel(px, 'right', rotations=1)
+        time.sleep(PAUSE)
+
+        # Test right wheel for 2 rotations
+        rotate_wheel(px, 'right', rotations=2)
+        time.sleep(PAUSE)
+
+        # Test backwards (optional)
+        rotate_wheel(px, 'left', rotations=1, speed=-SPEED)
+        rotate_wheel(px, 'right', rotations=1, speed=-SPEED)
+
     finally:
         px.stop()
-        print("Motors stopped.")
+        print("Motors stopped safely.")
