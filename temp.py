@@ -24,6 +24,7 @@ def turn_left(px, speed=TURN_SPEED):
     for angle in range(0, -35, -5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.125)
+    time.sleep(0.8)    
     px.stop()
     for angle in range(-32, 2, 2):
         px.set_dir_servo_angle(angle)
