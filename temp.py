@@ -1,53 +1,44 @@
-# motor_calibration.py
+from picarx import Picarx  
 import time
-from picarx import Picarx
 
-def calibrate_motor_speed(px: Picarx):
+def motor_speed_calibration(self, value):
     """
-    Interactive motor speed calibration.
-    Adjust until the robot moves straight forward.
+    Calibrate motor speed difference between left and right motors.
+
+    Args:
+        value (list[int, int]): [left_offset, right_offset]
+            - left_offset: value to subtract from left motor speed
+            - right_offset: value to subtract from right motor speed
+
+    Example:
+        px.motor_speed_calibration([5, 0])
+        px.motor_speed_calibration([0, -3])
     """
-    print("🧭 Motor Speed Calibration")
-    print("--------------------------")
-    print("This will make the car move forward slowly for testing.")
-    print("Use adjustments until it moves straight.\n")
+    # Validate input
+    if not isinstance(value, (list, tuple)) or len(value) != 2:
+        raise ValueError("motor_speed_calibration expects a 2-element list [left, right]")
 
-    # Initial calibration values (difference between left & right)
-    cali_left = 0
-    cali_right = 0
-    base_speed = 50
+    # Ensure both are integers
+    left_offset = int(value[0])
+    right_offset = int(value[1])
 
+    # Save calibration offsets
+    self.cali_speed_value = [left_offset, right_offset]
+
+    # Optionally store in config file for persistence
     try:
-        while True:
-            print(f"\nCurrent calibration: left={cali_left}, right={cali_right}")
-            px.motor_speed_calibration([cali_left, cali_right])
-            px.forward(base_speed)
-            time.sleep(2)
-            px.stop()
+        self.config_flie.set("picarx_speed_calibration", str(self.cali_speed_value))
+    except Exception as e:
+        print(f"⚠️ Could not save calibration to config: {e}")
 
-            action = input("Adjust (l/r to tweak, s to save, q to quit): ").lower()
+    print(f"✅ Motor speed calibration updated: Left={left_offset}, Right={right_offset}")
 
-            if action == "l":
-                cali_left += int(input("Enter new offset for LEFT motor (+/-): "))
-            elif action == "r":
-                cali_right += int(input("Enter new offset for RIGHT motor (+/-): "))
-            elif action == "s":
-                px.motor_speed_calibration([cali_left, cali_right])
-                px.config_flie.set("motor_speed_calibration", f"[{cali_left}, {cali_right}]")
-                print("✅ Calibration saved.")
-            elif action == "q":
-                print("Exiting calibration.")
-                break
-            else:
-                print("Unknown command. Use: l/r/s/q")
+px = Picarx()
 
-            time.sleep(0.5)
+# Left motor is slightly faster → add offset to slow it down
+px.motor_speed_calibration([5, 0])
 
-    except KeyboardInterrupt:
-        print("\nCalibration interrupted.")
-    finally:
-        px.stop()
-
-if __name__ == "__main__":
-    px = Picarx()
-    calibrate_motor_speed(px)
+# Test drive
+px.forward(50)
+time.sleep(2)
+px.stop()
