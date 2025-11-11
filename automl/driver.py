@@ -84,7 +84,7 @@ def drive(px,actions):
         elif current_action == "stop":
             px.stop()
             i += 1
-        elif current_action == "end":
+        elif current_action == "generate":
             grid = navigator.load_map("map.txt")  
             print(start)    
             goal = navigator.generate_random_goal(grid,start)
@@ -96,7 +96,7 @@ def drive(px,actions):
                 relative_direction,facing = navigator.convert_absolute_to_relative(directions,facing)
                 actions.extend(relative_direction)
                 print("Directions:", relative_direction,facing)
-                actions.append("end")
+                actions.append("generate")
             else:
                 print("No path found.")
             start = goal
