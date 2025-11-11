@@ -3,7 +3,7 @@ import driver
 
 px = Picarx()
 
-actions = ["forward"]
+actions = ["left"]
 
 if __name__ == "__main__":
     try:
