@@ -105,7 +105,7 @@ try:
                 relative_direction,facing = navigator.convert_absolute_to_relative(directions,facing)
                 actions.extend(relative_direction)
                 print("Directions:", relative_direction,facing)
-                #actions.append("end")
+                actions.append("end")
             else:
                 print("No path found.")
             start = goal
