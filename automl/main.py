@@ -15,6 +15,5 @@ if __name__ == "__main__":
         print("error:%s"%e)
     finally:
         px.stop()
-        Vilib.camera_close()
 
 
