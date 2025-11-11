@@ -18,26 +18,26 @@ TURN_TIME_LEFT = 1.6      # Seconds to complete a 90° turn
 
 def turn_left(px, speed=TURN_SPEED):
     """Turn the car left by ~90 degrees."""
-    for angle in range(0, -10, -2):
+    for angle in range(0, -20, -2):
          px.set_dir_servo_angle(angle)
     time.sleep(0.5)
     px.set_motor_speed(1, 0)       # left wheel stopped
     px.set_motor_speed(2, -speed) 
-    time.sleep(1)
+    time.sleep(0.8)
     px.stop()
-    for angle in range(-10,-20, -2):
+    for angle in range(-26,-30, -2):
          px.set_dir_servo_angle(-20)
     time.sleep(0.5)    
     px.set_motor_speed(1, 0)       # left wheel stopped
     px.set_motor_speed(2, -speed) 
-    time.sleep(1)
+    time.sleep(0.8)
     px.stop()
-    for angle in range(-20,-32,-2):
+    for angle in range(-26,-32,-2):
          px.set_dir_servo_angle(-30)
     time.sleep(0.5)    
     px.set_motor_speed(1, 0)       # left wheel stopped
     px.set_motor_speed(2, -speed) 
-    time.sleep(1)
+    time.sleep(0.8)
     px.stop()
     for angle in range(-32, 2, 2):
         px.set_dir_servo_angle(angle)
