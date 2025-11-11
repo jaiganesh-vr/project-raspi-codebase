@@ -52,13 +52,13 @@ def turn_right(px, speed=TURN_SPEED):
         time.sleep(0.01)   
 
 def reverse(px, speed=TURN_SPEED):
-    """Turn the car left by ~90 degrees."""
-    px.set_motor_speed(1, -speed)   # left wheel active
-    px.set_motor_speed(2, 0)   
+    """Turn the car left by ~90 degrees.""" 
     for angle in range(0, 35, 5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.285)
-    time.sleep(0.285)
+    px.set_motor_speed(1, speed)   # left wheel active
+    px.set_motor_speed(2, 0)  
+    time.sleep(1.650)
     px.stop()
     for angle in range(30, 0, -2):
         px.set_dir_servo_angle(angle)
