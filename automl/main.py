@@ -66,7 +66,8 @@ def reverse(px, speed=TURN_SPEED):
         px.set_dir_servo_angle(angle)
         time.sleep(0.1)   
 
-actions = ["right","forward"]
+actions = ["end"]
+#actions = ["right","forward"]
 #actions = ["left", "right", "reverse","forward"]
 #actions = ["forward", "reverse", "right", "straight", "left", "straight", "stop"]
 
@@ -104,7 +105,7 @@ try:
                 relative_direction,facing = navigator.convert_absolute_to_relative(directions,facing)
                 actions.extend(relative_direction)
                 print("Directions:", relative_direction,facing)
-                actions.append("end")
+                #actions.append("end")
             else:
                 print("No path found.")
             start = goal
