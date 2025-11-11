@@ -3,15 +3,15 @@ import navigator
 import time
 
 # --- Initialization ---
-i = 1
 reset_mcu()
 time.sleep(2)
+
 start = (3, 3) 
 facing = "up"
 
 # --- Constants ---
 TURN_SPEED = 10         # Moderate speed for turning
-DRIVE_SPEED = 30        # Normal forward driving speed
+DRIVE_SPEED = 10        # Normal forward driving speed
 TURN_TIME_RIGHT = 1.6      # Seconds to complete a 90° turn
 TURN_TIME_LEFT = 1.6      # Seconds to complete a 90° turn
 TURN_TIME_180 = 3.2     # Seconds to complete a 180° turn
@@ -65,6 +65,7 @@ def reverse(px, speed=TURN_SPEED):
         time.sleep(0.01)  
 
 def drive(px,actions):
+    i =  1
     while actions:  # runs while the list is not empty
         current_action = actions.pop(0)  # remove the first item
         print(f"Executing: {current_action}")
