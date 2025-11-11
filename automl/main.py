@@ -7,7 +7,7 @@ import time
 i = 1
 reset_mcu()
 time.sleep(2)
-start = (5, 5) 
+start = (4, 4) 
 facing = "up"
 px = Picarx()
 
