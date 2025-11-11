@@ -36,8 +36,8 @@ def turn_right(px, speed=TURN_SPEED):
     px.set_motor_speed(2, 0)   
     for angle in range(0, 35, 5):
         px.set_dir_servo_angle(angle)
-        time.sleep(0.15)
-    time.sleep(0.15)
+        time.sleep(0.1)
+    time.sleep(0.1)
     px.stop()
     for angle in range(30, 0, -2):
         px.set_dir_servo_angle(angle)
