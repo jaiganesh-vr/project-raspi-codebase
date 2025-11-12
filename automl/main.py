@@ -1,6 +1,7 @@
 from robot_hat.utils import reset_mcu
 from picarx import Picarx  
 import readchar
+import helper
 import driver
 import time
 
@@ -21,6 +22,10 @@ def show_info():
     print(manual)
 
 if __name__ == "__main__":
+
+    voltage = helper.get_battery_voltage()
+    level = helper.map_voltage_to_percent(voltage)
+    print(f"Battery Voltage: {voltage:.2f} V | Level: {level:.1f}%")
    
     try:
         px = Picarx()
