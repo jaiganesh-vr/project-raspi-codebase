@@ -94,7 +94,7 @@ def turn_left(px, speed=TURN_SPEED):
     #Right motor moves forward
     px.set_motor_speed(1, 0)       
     px.set_motor_speed(2, -1*speed)     
-    time.sleep(0.75)    
+    time.sleep(0.5)    
     px.stop()
     #Steering sets back to zero   
     for angle in range(-32, 0, 2):
