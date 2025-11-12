@@ -156,6 +156,10 @@ def auto(px,actions):
             turn_right(px)
         elif current_action == "left":
             turn_left(px)
+        elif current_action == "foward left":
+            forward_left(px)
+        elif current_action == "foward right":
+            forward_right(px)
         elif current_action == "stop":
             px.stop()
         elif current_action == "generate":
@@ -193,11 +197,11 @@ def manual(px):
             key = key.lower()
             if key in('awdopi'):
                 if 'i' == key:
-                    engine_start(px)
+                    turn_left(px)
                 elif 'o' == key:
-                    engine_stop(px)
+                    reverse(px)
                 elif 'p' == key:
-                    engine_reverse(px)
+                    turn_right(px)
                 elif 'a' == key:
                     #current_angle = steer_left(px,current_angle)
                     forward_left(px)
