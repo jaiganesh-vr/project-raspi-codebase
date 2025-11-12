@@ -19,8 +19,8 @@ if __name__ == "__main__":
    
     try:
         px = Picarx()
-        show_info()
         while True:
+            show_info()
             key = readchar.readkey()
             key = key.lower()
             if key in('dmer'):
