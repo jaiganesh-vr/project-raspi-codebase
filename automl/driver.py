@@ -202,9 +202,9 @@ def auto(px,actions):
             start = goal
             print(start)
 
-        # Pause between steps
         px.stop()
         time.sleep(PAUSE_BETWEEN_ACTIONS)
+        
     print("All actions completed! \n")
     time.sleep(2)
             
