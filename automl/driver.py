@@ -61,7 +61,7 @@ def turn_left(px, speed=TURN_SPEED):
     #Steering sets back to zero   
     for angle in range(-32, 0, 2):
         px.set_dir_servo_angle(angle)
-        time.sleep(0.01)
+        time.sleep(0.110)
     #Steering moves right    
     for angle in range(0, 35, 5):
         px.set_dir_servo_angle(angle)
@@ -71,7 +71,7 @@ def turn_left(px, speed=TURN_SPEED):
     time.sleep(0.650) 
     for angle in range(30, 0, -2):
         px.set_dir_servo_angle(angle)
-        time.sleep(0.01)    
+        time.sleep(0.110)    
        
 
 def turn_right(px, speed=TURN_SPEED):
@@ -88,7 +88,7 @@ def turn_right(px, speed=TURN_SPEED):
     #Steering sets back to zero
     for angle in range(30, 0, -2):
         px.set_dir_servo_angle(angle)
-        time.sleep(0.01) 
+        time.sleep(0.110) 
     #Steering turns left
     for angle in range(0, -32, -2):
         px.set_dir_servo_angle(angle)
@@ -98,7 +98,7 @@ def turn_right(px, speed=TURN_SPEED):
     px.set_motor_speed(2, speed)
     time.sleep(1.250) 
     #Steering sets to zero
-    for angle in range (-32, 2, -2):
+    for angle in range (-32, 2, 2):
         px.set_dir_servo_angle(angle)
         time.sleep(0.110)  
 
