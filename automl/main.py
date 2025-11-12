@@ -35,10 +35,10 @@ if __name__ == "__main__":
                     driver.race()
 
             elif key == readchar.key.CTRL_C:
-                print("\n Quit")
                 break
     except KeyboardInterrupt:
         print("Bye! 👋 \n")
+        
     finally:
         px.set_cam_tilt_angle(0)
         px.set_cam_pan_angle(0)
