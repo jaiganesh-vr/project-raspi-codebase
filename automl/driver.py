@@ -139,15 +139,16 @@ def drive(px,actions):
             
 def manual(px):
     try:
+        print("Entering Manual Mode")
         while True:
             key = readchar.readkey()
             key = key.lower()
             if key in('adopi'):
-                if 'o' == key:
+                if 'i' == key:
                     engine_start(px)
-                elif 'p' == key:
+                elif 'o' == key:
                     engine_stop(px)
-                elif 'i' == key:
+                elif 'p' == key:
                     engine_reverse(px)
                 elif 'a' == key:
                     steer_left(px)
