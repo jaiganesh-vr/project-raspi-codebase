@@ -1,7 +1,12 @@
+from robot_hat.utils import reset_mcu
 from picarx import Picarx  
 import readchar
 import driver
 import time
+
+# --- Initialization ---
+reset_mcu()
+time.sleep(2)
 
 manual = '''
 Select one of the following mode for Picar X :)
@@ -38,7 +43,7 @@ if __name__ == "__main__":
                 break
     except KeyboardInterrupt:
         print("Bye! 👋 \n")
-        
+
     finally:
         px.set_cam_tilt_angle(0)
         px.set_cam_pan_angle(0)
