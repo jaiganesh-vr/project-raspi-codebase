@@ -97,17 +97,17 @@ def turn_left(px, speed=TURN_SPEED):
     time.sleep(0.65)    
     px.stop()
     #Steering sets back to zero   
-    for angle in range(-32, 0, 2):
+    for angle in range(-35, 0, 5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.0525)
     #Steering moves right    
-    for angle in range(0, 35, 5):
+    for angle in range(0, 40, 5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.0525)
     px.set_motor_speed(1, -1*speed)       
     px.set_motor_speed(2, 0)
     time.sleep(0.5) 
-    for angle in range(30, 0, -2):
+    for angle in range(30, 5, -5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.0525)    
        
@@ -122,11 +122,11 @@ def turn_right(px, speed=TURN_SPEED):
     time.sleep(0.5)
     px.stop()
     #Steering sets back to zero
-    for angle in range(30, 0, -2):
+    for angle in range(30, 5, -5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.0525) 
     #Steering turns left
-    for angle in range(0, -32, -2):
+    for angle in range(0, -35, -5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.0525)  
     #Right motor moves backward    
@@ -134,33 +134,33 @@ def turn_right(px, speed=TURN_SPEED):
     px.set_motor_speed(2, speed)
     time.sleep(0.5) 
     #Steering sets to zero
-    for angle in range (-32, 2, 2):
+    for angle in range (-35, 5, 5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.0525)  
 
 def forward_right(px):
     px.set_dir_servo_angle(0)
-    for x in range(0,26, 1):
+    for x in range(0,30, 5):
         px.set_dir_servo_angle(x)
         time.sleep(0.0525)
     px.set_motor_speed(1, 10)
     px.set_motor_speed(2, -1*10) 
     time.sleep(1.25)
     px.stop()
-    for x in range(26, 1, -1):
+    for x in range(25, 5, -5):
         px.set_dir_servo_angle(x)
         time.sleep(0.0525)   
 
 def forward_left(px):
     px.set_dir_servo_angle(0)
-    for x in range(0,-31, -1):
+    for x in range(0,-35, -5):
         px.set_dir_servo_angle(x)
         time.sleep(0.0525)
     px.set_motor_speed(1, 10)
     px.set_motor_speed(2, -1*10) 
     time.sleep(1.75)
     px.stop()
-    for x in range(-30, 1, 1):
+    for x in range(-35, 5, 5):
         px.set_dir_servo_angle(x)
         time.sleep(0.0525)   
 
