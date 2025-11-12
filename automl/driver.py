@@ -17,9 +17,6 @@ PAUSE_BETWEEN_ACTIONS = 1  # Seconds to pause after each action
 
 # --- Helper Functions ---
 def constrain(x, min_val, max_val):
-    '''
-    Constrains value to be within a range.
-    '''
     return max(min_val, min(max_val, x))
 
 # --- Manual Movement Functions ---
@@ -164,7 +161,7 @@ def forward_left(px):
         px.set_dir_servo_angle(x)
         time.sleep(0.0525)   
 
-# --- Drive Mode Functions ---
+# --- Auto Mode Functions ---
 
 def auto(px,actions):
     start = (2, 2) 
@@ -211,9 +208,11 @@ def auto(px,actions):
     print("All actions completed! \n")
     time.sleep(2)
             
+# --- Auto Mode Functions ---
+            
 def manual(px):
     try:
-        print("Entering Manual Mode \n")
+        print("Entering Manual Mode ... \n")
         current_angle = 0
         while True:
             key = readchar.readkey()
@@ -235,7 +234,7 @@ def manual(px):
             elif key == readchar.key.CTRL_C:
                 break
     except KeyboardInterrupt:
-        print("Exiting Manual Mode.\n")
+        print("Exiting Manual Mode ... \n")
     finally:
         px.set_cam_tilt_angle(0)
         px.set_cam_pan_angle(0)
