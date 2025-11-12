@@ -81,19 +81,21 @@ def engine_stop(px):
 def engine_reverse(px):
     px.backward(10)
 
-def steer_left(px):
-    current_angle = px.dir_current_angle
-    new_angle = current_angle - 5
+def steer_left(px,current_angle):
+    temp_angle = current_angle
+    new_angle = temp_angle - 5
     final_angle = constrain(new_angle,-30,30)
     print("Current Angle:",current_angle)
     print("Final Angle:",final_angle)
+    return final_angle
 
-def steer_right(px):
-    current_angle = px.dir_current_angle
-    new_angle = current_angle + 5
+def steer_right(px,current_angle):
+    temp_angle = current_angle
+    new_angle = temp_angle + 5
     final_angle = constrain(new_angle,-30,30)
     print("Current Angle:",current_angle)
     print("Final Angle:",final_angle)
+    return final_angle
 
 def drive(px,actions):
     while actions:  # runs while the list is not empty
@@ -135,10 +137,11 @@ def drive(px,actions):
             
 def manual(px):
     try:
-        print("Entering Manual Mode")
+        print("Entering Manual Mode \n")
         while True:
             key = readchar.readkey()
             key = key.lower()
+            current_angle = 0
             if key in('adopi'):
                 if 'i' == key:
                     engine_start(px)
@@ -147,9 +150,9 @@ def manual(px):
                 elif 'p' == key:
                     engine_reverse(px)
                 elif 'a' == key:
-                    steer_left(px)
+                    current_angle = steer_left(px,current_angle)
                 elif 'd' == key:
-                    steer_right(px)
+                    current_angle = steer_right(px,current_angle)
 
             elif key == readchar.key.CTRL_C:
                 break
