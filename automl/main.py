@@ -19,13 +19,13 @@ Select one of the following mode for Picar X :)
 '''
 def show_info():
     print("\033[H\033[J",end='')  # clear terminal windows
+    voltage = helper.get_battery_voltage()
+    level = helper.map_voltage_to_percent(voltage)
+    print(f"Battery Voltage: {voltage:.2f} V | Level: {level:.1f}%")
     print(manual)
 
 if __name__ == "__main__":
 
-    voltage = helper.get_battery_voltage()
-    level = helper.map_voltage_to_percent(voltage)
-    print(f"Battery Voltage: {voltage:.2f} V | Level: {level:.1f}%")
    
     try:
         px = Picarx()
