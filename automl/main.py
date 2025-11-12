@@ -11,7 +11,7 @@ time.sleep(2)
 
 manual = '''
 Select one of the following mode for Picar X :)
-    d: Drive
+    a: Auto
     m: Manual
     e: Explore
     r: Race
@@ -34,10 +34,10 @@ if __name__ == "__main__":
             show_info()
             key = readchar.readkey()
             key = key.lower()
-            if key in('dmer'):
-                if 'd' == key:
+            if key in('amer'):
+                if 'a' == key:
                     actions = ["left","right","reverse","forward"]
-                    driver.drive(px,actions)
+                    driver.auto(px,actions)
                 elif 'm' == key:
                     driver.manual(px)
                 elif 'e' == key:
