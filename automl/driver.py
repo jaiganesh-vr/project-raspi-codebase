@@ -100,5 +100,5 @@ def drive(px,actions):
         # Pause between steps
         px.stop()
         time.sleep(PAUSE_BETWEEN_ACTIONS)
-    print("All actions completed!")
+    print("All actions completed! \n")
 
