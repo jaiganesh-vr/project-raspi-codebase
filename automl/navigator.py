@@ -101,6 +101,35 @@ def path_to_directions(path):
             directions.append("up")
     return directions
 
+def simplify_actions(actions):
+    """
+    Simplify a list of robot actions by merging patterns:
+    - forward, left, forward  -> forward left
+    - forward, right, forward -> forward right
+    """
+    simplified = []
+    i = 0
+
+    while i < len(actions):
+        # Look ahead for the 3-action pattern
+        if i + 2 < len(actions):
+            a1, a2, a3 = actions[i], actions[i + 1], actions[i + 2]
+
+            if a1 == "forward" and a2 == "left" and a3 == "forward":
+                simplified.append("forward left")
+                i += 3
+                continue
+            elif a1 == "forward" and a2 == "right" and a3 == "forward":
+                simplified.append("forward right")
+                i += 3
+                continue
+
+        # Otherwise, just append the current action
+        simplified.append(actions[i])
+        i += 1
+
+    return simplified
+
 if __name__ == "__main__":
     grid = load_map("map.txt")      
     start = (0, 1)  # top-left
