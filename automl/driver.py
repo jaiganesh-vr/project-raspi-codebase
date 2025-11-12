@@ -78,7 +78,7 @@ def move_reverse(px, speed=TURN_SPEED):
     for angle in range(0, 35, 5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.110)
-    px.set_motor_speed(1, speed)   # left wheel active
+    px.set_motor_speed(1, speed)   
     px.set_motor_speed(2, 0)  
     time.sleep(1.350)
     px.stop()
