@@ -29,6 +29,7 @@ if __name__ == "__main__":
             if key in('dmer'):
                 if 'd' == key:
                     driver.drive(px,actions)
+                    break
                 elif 'm' == key:
                     driver.manual()
                 elif 'e' == key:
