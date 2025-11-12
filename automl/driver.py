@@ -75,7 +75,7 @@ def reverse(px, speed=TURN_SPEED):
 def engine_start(px):
     px.set_motor_speed(1, 10)
     px.set_motor_speed(2, -1*10) 
-    time.sleep(1.85)
+    time.sleep(1.95)
     px.stop()
 
 def engine_stop(px):
