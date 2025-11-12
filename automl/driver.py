@@ -22,10 +22,28 @@ def constrain(x, min_val, max_val):
     return max(min_val, min(max_val, x))
 
 # --- Movement Functions ---
+def engine_start(px):
+    px.set_dir_servo_angle(0)
+    px.set_motor_speed(1, 10)
+    px.set_motor_speed(2, -1*10) 
+    time.sleep(1)
+    px.stop()
+
+def engine_stop(px):
+    px.stop()
+
+def engine_reverse(px):
+    px.set_dir_servo_angle(0)
+    px.set_motor_speed(1, -1*10)
+    px.set_motor_speed(2, 10)  
+    time.sleep(1)
+    px.stop()
+
 def move_forward(px, duration=1.0, speed=DRIVE_SPEED):
     """Move forward for a specified duration."""
     px.set_dir_servo_angle(0)
-    px.forward(speed)
+    px.set_motor_speed(1, 10)
+    px.set_motor_speed(2, -1*10)     
     time.sleep(duration)
     px.stop()
 
@@ -34,7 +52,6 @@ def turn_left(px, speed=TURN_SPEED):
     for angle in range(0, -35, -5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.110)
-    #px.forward(10)
     px.set_motor_speed(1, 0)       # left wheel stopped
     px.set_motor_speed(2, -speed)     
     time.sleep(1.050)    
@@ -48,7 +65,7 @@ def turn_right(px, speed=TURN_SPEED):
     for angle in range(0, 35, 5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.110)
-    px.set_motor_speed(1, speed)   # left wheel active
+    px.set_motor_speed(1, speed)   # right wheel stopped
     px.set_motor_speed(2, 0)   
     time.sleep(0.825)
     px.stop()
@@ -69,48 +86,11 @@ def reverse(px, speed=TURN_SPEED):
         px.set_dir_servo_angle(angle)
         time.sleep(0.01)  
 
-def engine_start(px):
-    px.set_dir_servo_angle(0)
-    px.set_motor_speed(1, 10)
-    px.set_motor_speed(2, -1*10) 
-    time.sleep(1)
-    px.stop()
-
-def engine_stop(px):
-    px.stop()
-
-def engine_reverse(px):
-    px.set_dir_servo_angle(0)
-    px.set_motor_speed(1, -1*10)
-    px.set_motor_speed(2, 10)  
-    time.sleep(1)
-    px.stop()
-
 def steer_left(px,current_angle):
     temp_angle = current_angle
     new_angle = temp_angle - 5
     final_angle = constrain(new_angle,-30,30)
     for x in range(current_angle,final_angle+1, -1):
-        px.set_dir_servo_angle(x)
-        time.sleep(0.0125)
-    return final_angle
-
-def steer_center(px,current_angle):
-    if current_angle >= 0:
-        for x in range(current_angle, 1, -1):
-            px.set_dir_servo_angle(x)
-            time.sleep(0.0125)
-    else:
-        for x in range(current_angle, 1, 1):
-            px.set_dir_servo_angle(x)
-            time.sleep(0.0125)
-    return 0
-
-def steer_right(px,current_angle):
-    temp_angle = current_angle
-    new_angle = temp_angle + 5
-    final_angle = constrain(new_angle,-30,30)
-    for x in range(current_angle,final_angle+1, 1):
         px.set_dir_servo_angle(x)
         time.sleep(0.0125)
     return final_angle
@@ -141,6 +121,26 @@ def forward_left(px):
         px.set_dir_servo_angle(x)
         time.sleep(0.01)   
 
+
+def steer_center(px,current_angle):
+    if current_angle >= 0:
+        for x in range(current_angle, 1, -1):
+            px.set_dir_servo_angle(x)
+            time.sleep(0.0125)
+    else:
+        for x in range(current_angle, 1, 1):
+            px.set_dir_servo_angle(x)
+            time.sleep(0.0125)
+    return 0
+
+def steer_right(px,current_angle):
+    temp_angle = current_angle
+    new_angle = temp_angle + 5
+    final_angle = constrain(new_angle,-30,30)
+    for x in range(current_angle,final_angle+1, 1):
+        px.set_dir_servo_angle(x)
+        time.sleep(0.0125)
+    return final_angle
 
 def auto(px,actions):
     start = (2, 2) 
