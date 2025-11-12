@@ -27,7 +27,6 @@ def show_info():
 
 if __name__ == "__main__":
 
-   
     try:
         px = Picarx()
         while True:
