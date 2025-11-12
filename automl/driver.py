@@ -168,8 +168,9 @@ def auto(px,actions):
                 directions = navigator.path_to_directions(path)
                 print(directions)
                 relative_directions,facing = navigator.convert_absolute_to_relative(directions,facing)
-                actions.extend(relative_directions)
-                print("Directions:", relative_directions,facing)
+                final_directions = navigator.simplify_actions(relative_directions)
+                actions.extend(final_directions)
+                print("Directions:", final_directions,facing)
                 actions.append("generate")
             else:
                 print("No path found.")
