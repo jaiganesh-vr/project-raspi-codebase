@@ -7,7 +7,7 @@ import time
 reset_mcu()
 time.sleep(2)
 
-start = (3, 3) 
+start = (2, 2) 
 facing = "up"
 
 # --- Constants ---
@@ -145,7 +145,7 @@ def forward_left(px):
         time.sleep(0.01)   
 
 
-def drive(px,actions):
+def auto(px,actions):
     while actions:  # runs while the list is not empty
         current_action = actions.pop(0)  # remove the first item
         print(f"Executing: {current_action}")
