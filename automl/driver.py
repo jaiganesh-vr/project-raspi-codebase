@@ -91,14 +91,7 @@ def steer_left(px,current_angle):
     return final_angle
 
 def steer_center(px,current_angle):
-    if current_angle < 0:
-        for x in range(current_angle, 0, -1):
-            px.set_dir_servo_angle(x)
-            time.sleep(0.0125)
-    else: 
-        for x in range(current_angle, 0, 1):
-            px.set_dir_servo_angle(x)
-            time.sleep(0.0125)
+    px.set_dir_servo_angle(0)
     return 0
 
 def steer_right(px,current_angle):
