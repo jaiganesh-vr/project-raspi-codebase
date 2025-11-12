@@ -85,19 +85,15 @@ def steer_left(px):
     current_angle = px.dir_current_angle
     new_angle = current_angle - 5
     final_angle = constrain(new_angle,-30,30)
-    for x in range(current_angle, final_angle -2):
-        px.set_dir_servo_angle(x)
-        time.sleep(0.0125)
+    print("Current Angle:",current_angle)
+    print("Final Angle:",final_angle)
 
 def steer_right(px):
     current_angle = px.dir_current_angle
     new_angle = current_angle + 5
     final_angle = constrain(new_angle,-30,30)
-    for x in range(current_angle, final_angle, 2):
-        px.set_dir_servo_angle(x)
-        time.sleep(0.0125)
-
-
+    print("Current Angle:",current_angle)
+    print("Final Angle:",final_angle)
 
 def drive(px,actions):
     while actions:  # runs while the list is not empty
