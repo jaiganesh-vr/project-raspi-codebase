@@ -66,25 +66,19 @@ def reverse(px, speed=TURN_SPEED):
         time.sleep(0.01)  
 
 def drive(px,actions):
-    i =  1
     while actions:  # runs while the list is not empty
         current_action = actions.pop(0)  # remove the first item
         print(f"Executing: {current_action}")
         if current_action == "forward":
             move_forward(px)
-            i += 1
         elif current_action == "reverse":
             reverse(px)
-            i += 1
         elif current_action == "right":
             turn_right(px)
-            i += 1
         elif current_action == "left":
             turn_left(px)
-            i += 1
         elif current_action == "stop":
             px.stop()
-            i += 1
         elif current_action == "generate":
             grid = navigator.load_map("map.txt")  
             print(start)    
@@ -102,7 +96,7 @@ def drive(px,actions):
                 print("No path found.")
             start = goal
             print(start)
-            
+
         # Pause between steps
         px.stop()
         time.sleep(PAUSE_BETWEEN_ACTIONS)
