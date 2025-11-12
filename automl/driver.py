@@ -73,13 +73,15 @@ def reverse(px, speed=TURN_SPEED):
         time.sleep(0.01)  
 
 def engine_start(px):
-    px.forward(10)
+    px.set_motor_speed(1, 10)
+    px.set_motor_speed(2, -1*10) 
 
 def engine_stop(px):
     px.stop()
 
 def engine_reverse(px):
-    px.backward(10)
+    px.set_motor_speed(1, -1*10)
+    px.set_motor_speed(2, 10)  
 
 def steer_left(px,current_angle):
     temp_angle = current_angle
