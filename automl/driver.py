@@ -180,9 +180,9 @@ def auto(px,actions):
             turn_right(px)
         elif current_action == "left":
             turn_left(px)
-        elif current_action == "foward_left":
+        elif current_action == "forward_left":
             forward_left(px)
-        elif current_action == "foward_right":
+        elif current_action == "forward_right":
             forward_right(px)
         elif current_action == "stop":
             px.stop()
