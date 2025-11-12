@@ -97,7 +97,7 @@ def turn_left(px, speed=TURN_SPEED):
     time.sleep(0.65)    
     px.stop()
     #Steering sets back to zero   
-    for angle in range(-35, 0, 5):
+    for angle in range(-35, 5, 5):
         px.set_dir_servo_angle(angle)
         time.sleep(0.0525)
     #Steering moves right    
