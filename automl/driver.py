@@ -96,7 +96,7 @@ def turn_right(px, speed=TURN_SPEED):
     #Right motor moves backward    
     px.set_motor_speed(1, 0)
     px.set_motor_speed(2, speed)
-    time.sleep(0.650) 
+    time.sleep(1.250) 
     #Steering sets to zero
     for angle in range (-32, 2, -2):
         px.set_dir_servo_angle(angle)
