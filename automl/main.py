@@ -38,7 +38,7 @@ if __name__ == "__main__":
                 print("\n Quit")
                 break
     except KeyboardInterrupt:
-        print("\nBye! 👋")
+        print("Bye! 👋 \n")
     finally:
         px.set_cam_tilt_angle(0)
         px.set_cam_pan_angle(0)
