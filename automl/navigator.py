@@ -87,45 +87,6 @@ def find_shortest_path(grid, start, goal):
     return None  # no path found
 from collections import deque
 
-def find_shortest_path_limited(matrix, start, goal):
-    """
-    Find the shortest path from start -> goal using only:
-      forward (up), forward right (up+right), forward left (up+left)
-
-    matrix: 2D list (0 = free, 1 = obstacle)
-    start, goal: (row, col)
-    """
-    rows, cols = len(matrix), len(matrix[0])
-
-    # Possible moves
-    moves = {
-        "forward": (-1, 0),
-        "forward right": (-1, 1),
-        "forward left": (-1, -1)
-    }
-
-    # BFS setup
-    queue = deque([(start, [])])
-    visited = set([start])
-
-    while queue:
-        (r, c), path = queue.popleft()
-
-        # Goal reached
-        if (r, c) == goal:
-            return path
-
-        # Try all allowed moves
-        for action, (dr, dc) in moves.items():
-            nr, nc = r + dr, c + dc
-
-            if 0 <= nr < rows and 0 <= nc < cols:
-                if matrix[nr][nc] == 0 and (nr, nc) not in visited:
-                    visited.add((nr, nc))
-                    queue.append(((nr, nc), path + [action]))
-
-    return None  # No path found
-
 def path_to_directions(path):
     """Convert list of coordinates to movement directions"""
     directions = []
@@ -139,30 +100,6 @@ def path_to_directions(path):
         elif r2 == r1 - 1 and c2 == c1:
             directions.append("up")
     return directions
-
-def path_to_directions_limited(path):
-    """
-    Convert a list of (row, col) coordinates into allowed robot actions:
-    - forward (r-1, c)
-    - forward right (r-1, c+1)
-    - forward left (r-1, c-1)
-    """
-    actions = []
-    for (r1, c1), (r2, c2) in zip(path, path[1:]):
-        dr = r2 - r1
-        dc = c2 - c1
-
-        if dr == -1 and dc == 0:
-            actions.append("forward")
-        elif dr == -1 and dc == 1:
-            actions.append("forward right")
-        elif dr == -1 and dc == -1:
-            actions.append("forward left")
-        else:
-            # This handles invalid or disallowed moves
-            actions.append("invalid move")
-
-    return actions
 
 if __name__ == "__main__":
     grid = load_map("map.txt")      
