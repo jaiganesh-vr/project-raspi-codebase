@@ -152,7 +152,7 @@ def manual(px):
         while True:
             key = readchar.readkey()
             key = key.lower()
-            if key in('adopi'):
+            if key in('awdopi'):
                 if 'i' == key:
                     engine_start(px)
                 elif 'o' == key:
