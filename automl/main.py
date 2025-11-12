@@ -29,7 +29,7 @@ if __name__ == "__main__":
             if key in('dmer'):
                 if 'd' == key:
                     driver.drive(px,actions)
-                    break
+                    continue
                 elif 'm' == key:
                     driver.manual()
                 elif 'e' == key:
@@ -47,4 +47,4 @@ if __name__ == "__main__":
         px.set_cam_pan_angle(0)
         px.set_dir_servo_angle(0)
         px.stop()
-        sleep(.2)
+        time.sleep(1)
