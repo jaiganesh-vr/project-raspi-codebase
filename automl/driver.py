@@ -73,6 +73,7 @@ def reverse(px, speed=TURN_SPEED):
         time.sleep(0.01)  
 
 def engine_start(px):
+    px.set_dir_servo_angle(0)
     px.set_motor_speed(1, 10)
     px.set_motor_speed(2, -1*10) 
     time.sleep(1)
@@ -82,6 +83,7 @@ def engine_stop(px):
     px.stop()
 
 def engine_reverse(px):
+    px.set_dir_servo_angle(0)
     px.set_motor_speed(1, -1*10)
     px.set_motor_speed(2, 10)  
     time.sleep(1)
