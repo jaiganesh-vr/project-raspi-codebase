@@ -28,7 +28,7 @@ if __name__ == "__main__":
                     actions = ["left","right","reverse","forward"]
                     driver.drive(px,actions)
                 elif 'm' == key:
-                    driver.manual()
+                    driver.manual(px)
                 elif 'e' == key:
                     driver.explore()
                 elif 'r' == key:
@@ -37,6 +37,8 @@ if __name__ == "__main__":
             elif key == readchar.key.CTRL_C:
                 print("\n Quit")
                 break
+    except KeyboardInterrupt:
+        print("\nBye! 👋")
     finally:
         px.set_cam_tilt_angle(0)
         px.set_cam_pan_angle(0)
