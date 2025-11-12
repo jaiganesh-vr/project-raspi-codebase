@@ -7,9 +7,6 @@ import time
 reset_mcu()
 time.sleep(2)
 
-start = (2, 2) 
-facing = "up"
-
 # --- Constants ---
 TURN_SPEED = 10         # Moderate speed for turning
 DRIVE_SPEED = 10        # Normal forward driving speed
@@ -146,6 +143,8 @@ def forward_left(px):
 
 
 def auto(px,actions):
+    start = (2, 2) 
+    facing = "up"
     while actions:  # runs while the list is not empty
         current_action = actions.pop(0)  # remove the first item
         print(f"Executing: {current_action}")
