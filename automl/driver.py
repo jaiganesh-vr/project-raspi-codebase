@@ -1,5 +1,6 @@
 from robot_hat.utils import reset_mcu
 import navigator
+import readchar
 import time
 
 # --- Initialization ---
@@ -16,6 +17,12 @@ TURN_TIME_RIGHT = 1.6      # Seconds to complete a 90° turn
 TURN_TIME_LEFT = 1.6      # Seconds to complete a 90° turn
 TURN_TIME_180 = 3.2     # Seconds to complete a 180° turn
 PAUSE_BETWEEN_ACTIONS = 1  # Seconds to pause after each action
+
+def constrain(x, min_val, max_val):
+    '''
+    Constrains value to be within a range.
+    '''
+    return max(min_val, min(max_val, x))
 
 # --- Movement Functions ---
 def move_forward(px, duration=1.0, speed=DRIVE_SPEED):
@@ -65,6 +72,31 @@ def reverse(px, speed=TURN_SPEED):
         px.set_dir_servo_angle(angle)
         time.sleep(0.01)  
 
+def engine_start(px):
+    px.forward(10)
+
+def engine_stop(px):
+    px.stop()
+
+def engine_reverse(px):
+    px.backward(10)
+
+def steer_right(px):
+    current_angle = px.dir_current_angle
+    new_angle = current_angle + 5
+    final_angle = constrain(new_angle,-30,30)
+    for x in range(current_angle, final_angle, 2):
+        px.set_dir_servo_angle(x)
+        time.sleep(0.0125)
+
+def steer_left(px):
+    current_angle = px.dir_current_angle
+    new_angle = current_angle - 5
+    final_angle = constrain(new_angle,-30,30)
+    for x in range(current_angle, final_angle, 2):
+        px.set_dir_servo_angle(x)
+        time.sleep(0.0125)
+
 def drive(px,actions):
     while actions:  # runs while the list is not empty
         current_action = actions.pop(0)  # remove the first item
@@ -103,4 +135,30 @@ def drive(px,actions):
     print("All actions completed! \n")
 
             
+def manual(px):
+    try:
+        while True:
+            key = readchar.readkey()
+            key = key.lower()
+            if key in('adopi'):
+                if 'o' == key:
+                    engine_start(px)
+                elif 'p' == key:
+                    engine_stop(px)
+                elif 'i' == key:
+                    engine_reverse(px)
+                elif 'a' == key:
+                    steer_left(px)
+                elif 'd' == key:
+                    steer_right(px)
 
+            elif key == readchar.key.CTRL_C:
+                break
+    except KeyboardInterrupt:
+        print("Exiting Manual Mode.\n")
+    finally:
+        px.set_cam_tilt_angle(0)
+        px.set_cam_pan_angle(0)
+        px.set_dir_servo_angle(0)
+        px.stop()
+        time.sleep(1)
