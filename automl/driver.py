@@ -102,10 +102,9 @@ def drive(px,actions):
                 print("No path found.")
             start = goal
             print(start)
-        
+            
         # Pause between steps
-        print(f"Pausing for {PAUSE_BETWEEN_ACTIONS} seconds...\n")
         px.stop()
         time.sleep(PAUSE_BETWEEN_ACTIONS)
-        print("All actions completed!")
+    print("All actions completed!")
 
