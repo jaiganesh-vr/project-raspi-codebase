@@ -35,7 +35,7 @@ if __name__ == "__main__":
             key = key.lower()
             if key in('amer'):
                 if 'a' == key:
-                    actions = ["generate"]
+                    actions = ["left","right"]
                     driver.auto(px,actions)
                 elif 'm' == key:
                     driver.manual(px)
