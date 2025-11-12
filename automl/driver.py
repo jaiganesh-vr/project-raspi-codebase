@@ -138,10 +138,10 @@ def drive(px,actions):
 def manual(px):
     try:
         print("Entering Manual Mode \n")
+        current_angle = 0
         while True:
             key = readchar.readkey()
             key = key.lower()
-            current_angle = 0
             if key in('adopi'):
                 if 'i' == key:
                     engine_start(px)
