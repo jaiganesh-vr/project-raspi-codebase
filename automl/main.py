@@ -22,7 +22,7 @@ def show_info():
     voltage = helper.get_battery_voltage()
     level = helper.map_voltage_to_percent(voltage)
     print(manual)
-    print(f"Battery Voltage: {voltage:.2f} V | Level: {level:.1f}%")
+    print(f"Battery Voltage: {voltage:.2f} V | Level: {level:.1f}% \n")
 
 
 if __name__ == "__main__":
