@@ -97,7 +97,6 @@ def steer_left(px,current_angle):
     return final_angle
 
 def steer_center(px,current_angle):
-    
     if current_angle >= 0:
         for x in range(current_angle, 1, -1):
             px.set_dir_servo_angle(x)
@@ -117,6 +116,25 @@ def steer_right(px,current_angle):
         time.sleep(0.0125)
     return final_angle
 
+def forward_right(px):
+    px.set_dir_servo_angle(0)
+    for x in range(0,26, 1):
+        px.set_dir_servo_angle(x)
+        time.sleep(0.0125)
+    px.set_motor_speed(1, 10)
+    px.set_motor_speed(2, -1*10) 
+    time.sleep(1.5)
+    px.stop()
+
+def forward_left(px):
+    px.set_dir_servo_angle(0)
+    for x in range(0,31, -1):
+        px.set_dir_servo_angle(x)
+        time.sleep(0.0125)
+    px.set_motor_speed(1, 10)
+    px.set_motor_speed(2, -1*10) 
+    time.sleep(1.95)
+    px.stop()
 
 
 def drive(px,actions):
@@ -173,11 +191,13 @@ def manual(px):
                 elif 'p' == key:
                     engine_reverse(px)
                 elif 'a' == key:
-                    current_angle = steer_left(px,current_angle)
+                    #current_angle = steer_left(px,current_angle)
+                    forward_left(px)
                 elif 'w' == key:
                     current_angle = steer_center(px,current_angle)
                 elif 'd' == key:
-                    current_angle = steer_right(px,current_angle)
+                    #current_angle = steer_right(px,current_angle)
+                    forward_right(px)
 
             elif key == readchar.key.CTRL_C:
                 break
