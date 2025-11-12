@@ -15,9 +15,6 @@ def show_info():
     print("\033[H\033[J",end='')  # clear terminal windows
     print(manual)
 
-actions = ["left","right","reverse","forward"]
-
-
 if __name__ == "__main__":
    
     try:
@@ -28,16 +25,14 @@ if __name__ == "__main__":
             key = key.lower()
             if key in('dmer'):
                 if 'd' == key:
+                    actions = ["left","right","reverse","forward"]
                     driver.drive(px,actions)
-                    continue
                 elif 'm' == key:
                     driver.manual()
                 elif 'e' == key:
-                    px.set_dir_servo_angle(-35)
-                    px.forward(80)
+                    driver.explore()
                 elif 'r' == key:
-                    px.set_dir_servo_angle(35)
-                    px.forward(80)
+                    driver.race()
 
             elif key == readchar.key.CTRL_C:
                 print("\n Quit")
