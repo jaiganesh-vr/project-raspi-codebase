@@ -182,6 +182,7 @@ def auto(px,actions):
         elif current_action == "stop":
             px.stop()
         elif current_action == "generate":
+            print("\n")
             grid = navigator.load_map("map.txt")  
             goal = navigator.generate_random_goal(grid,start)
             path = navigator.find_shortest_path(grid, start, goal)
@@ -191,7 +192,6 @@ def auto(px,actions):
                 final_directions = navigator.simplify_actions(relative_directions)
                 actions.extend(final_directions)
                 actions.append("generate")
-                print("\n")
                 print("Path found:", path)
                 print("Absolute directions:", directions)
                 print("Relative Directions:", final_directions,facing)
