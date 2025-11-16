@@ -142,7 +142,7 @@ def forward_right(px):
     px.set_motor_speed(2, -1*10) 
     time.sleep(1.25)
     px.stop()
-    for x in range(25, 5, -5):
+    for x in range(25, -5, -5):
         px.set_dir_servo_angle(x)
         time.sleep(0.0525)   
 
@@ -155,7 +155,7 @@ def forward_left(px):
     px.set_motor_speed(2, -1*10) 
     time.sleep(1.75)
     px.stop()
-    for x in range(-35, -5, 5):
+    for x in range(-35, 5, 5):
         px.set_dir_servo_angle(x)
         time.sleep(0.0525)   
 
