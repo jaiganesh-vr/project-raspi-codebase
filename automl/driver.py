@@ -192,9 +192,9 @@ def auto(px,actions):
                 final_directions = navigator.simplify_actions(relative_directions)
                 actions.extend(final_directions)
                 actions.append("generate")
-                print("Path found:", path)
-                print("Absolute directions:", directions)
-                print("Relative Directions:", final_directions,facing)
+                print("Path found           :", path)
+                print("Absolute directions  :", directions)
+                print("Relative Directions  :", final_directions,facing)
             else:
                 print("No path found.")
             start = goal
