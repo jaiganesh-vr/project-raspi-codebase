@@ -159,7 +159,7 @@ def forward_left(px):
 # --- Auto Mode Functions ---
 
 def auto(px,actions):
-    start = (2, 2) 
+    start = (3, 3) 
     facing = "up"
     while actions:  # runs while the list is not empty
         current_action = actions.pop(0)  # remove the first item
