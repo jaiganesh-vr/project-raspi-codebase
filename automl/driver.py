@@ -21,7 +21,6 @@ def constrain(x, min_val, max_val):
 
 # --- Manual Movement Functions ---
 def engine_start(px):
-    px.set_dir_servo_angle(0)
     px.set_motor_speed(1, 10)
     px.set_motor_speed(2, -1*10) 
 
@@ -29,7 +28,6 @@ def engine_stop(px):
     px.stop()
 
 def engine_reverse(px):
-    px.set_dir_servo_angle(0)
     px.set_motor_speed(1, -1*10)
     px.set_motor_speed(2, 10)  
 
