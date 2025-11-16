@@ -23,7 +23,7 @@ def generate_random_goal(grid, start):
 
     if not free_cells:
         raise ValueError("No valid goal positions available!")
-
+    
     goal = random.choice(free_cells)
     print(f"From the location    : {start}")
     print(f"New goal selected    : {goal}")
