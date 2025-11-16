@@ -182,7 +182,7 @@ def auto(px,actions):
         elif current_action == "stop":
             px.stop()
         elif current_action == "generate":
-            print("\n")
+            print("••••••••••••••••••••••••••••")
             grid = navigator.load_map("map.txt")  
             goal = navigator.generate_random_goal(grid,start)
             path = navigator.find_shortest_path(grid, start, goal)
