@@ -194,10 +194,11 @@ def auto(px,actions):
                 print("Path found:", path)
                 print("Absolute directions:", directions)
                 print("Relative Directions:", final_directions,facing)
+                print("\n")
             else:
                 print("No path found.")
             start = goal
-            
+
         px.stop()
         time.sleep(PAUSE_BETWEEN_ACTIONS)
 
