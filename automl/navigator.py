@@ -27,7 +27,6 @@ def generate_random_goal(grid, start):
     goal = random.choice(free_cells)
     print(f"From the location: {start}")
     print(f"New goal selected: {goal}")
-
     return goal
 
 def find_shortest_path(grid, start, goal):
