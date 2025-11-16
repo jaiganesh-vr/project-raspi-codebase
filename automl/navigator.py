@@ -25,8 +25,8 @@ def generate_random_goal(grid, start):
         raise ValueError("No valid goal positions available!")
 
     goal = random.choice(free_cells)
-    print(f"From the location: {start}")
-    print(f"New goal selected: {goal}")
+    print(f"From the location    : {start}")
+    print(f"New goal selected    : {goal}")
     return goal
 
 def find_shortest_path(grid, start, goal):
