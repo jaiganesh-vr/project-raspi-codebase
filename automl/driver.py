@@ -193,7 +193,7 @@ def auto(px,actions):
         elif current_action == "stop":
             px.stop()
         elif current_action == "read":
-            px.read_distance(px)
+            read_distance(px)
         elif current_action == "generate":
             print("••••••••••••••••••••••")
             grid = navigator.load_map("map.txt")  
