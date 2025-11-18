@@ -157,6 +157,20 @@ def forward_left(px):
         time.sleep(0.0525)   
 
 # --- Auto Mode Functions ---
+def read_distance(px):
+  safe_distance = 40
+  danger_distance = 20
+  while True:
+            distance = round(px.ultrasonic.read(), 2)
+            print("distance: ",distance)
+            if distance >= safe_distance:
+                print("safe distance")
+            elif distance >= danger_distance:
+                print("safe but close danger")
+            else:
+                print("not safe")
+
+# --- Auto Mode Functions ---
 
 def auto(px,actions):
     start = (3, 3) 
@@ -178,6 +192,8 @@ def auto(px,actions):
             forward_right(px)
         elif current_action == "stop":
             px.stop()
+        elif current_action == "read":
+            px.read_distance(px)
         elif current_action == "generate":
             print("••••••••••••••••••••••")
             grid = navigator.load_map("map.txt")  
