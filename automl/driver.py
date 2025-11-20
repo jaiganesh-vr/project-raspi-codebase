@@ -178,6 +178,7 @@ def auto(px,actions):
     while actions:  # runs while the list is not empty
         distance = round(px.ultrasonic.read(), 2)
         if distance <= 20:
+            print("Obstacle detected")
             actions.clear()
             px.stop()
             break
