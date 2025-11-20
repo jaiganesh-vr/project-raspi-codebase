@@ -1,4 +1,5 @@
 from robot_hat.utils import reset_mcu
+from vilib import Vilib
 import navigator
 import readchar
 import time
@@ -169,12 +170,44 @@ def read_distance(px):
                 print("safe but close danger")
             else:
                 print("not safe")
+# --- Camera Mode Functions ---
+
+def clamp_number(num,a,b):
+  return max(min(num, max(a, b)), min(a, b))
+
+def stare_at():
+    Vilib.camera_start()
+    Vilib.display()
+    Vilib.face_detect_switch(True)
+    x_angle =0
+    y_angle =0
+    while True:
+        if Vilib.detect_obj_parameter['human_n']!=0:
+            coordinate_x = Vilib.detect_obj_parameter['human_x']
+            coordinate_y = Vilib.detect_obj_parameter['human_y']
+            
+            # change the pan-tilt angle for track the object
+            x_angle +=(coordinate_x*10/640)-5
+            x_angle = clamp_number(x_angle,-35,35)
+            px.set_cam_pan_angle(x_angle)
+
+            y_angle -=(coordinate_y*10/480)-5
+            y_angle = clamp_number(y_angle,-35,35)
+            px.set_cam_tilt_angle(y_angle)
+
+            sleep(0.05)
+
+        else :
+            pass
+            sleep(0.05)
+
 
 # --- Auto Mode Functions ---
 
 def auto(px,actions):
     start = (3, 3) 
     facing = "up"
+    stare_at()
     while actions:  # runs while the list is not empty
         distance = round(px.ultrasonic.read(), 2)
         if distance <= 20:
