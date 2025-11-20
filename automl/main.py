@@ -30,6 +30,7 @@ if __name__ == "__main__":
 
     try:
         px = Picarx()
+        px1 = Picarx()
         while True:
             show_info()
             key = readchar.readkey()
@@ -38,7 +39,7 @@ if __name__ == "__main__":
                 if 'a' == key:
                     actions = ["generate"]
                     t1 = threading.Thread(target=driver.auto(px,actions))
-                    t2 = threading.Thread(target=driver.stare_at(px))
+                    t2 = threading.Thread(target=driver.stare_at(px1))
                     t1.start()
                     t1.join
                     t2.start()
