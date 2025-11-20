@@ -1,5 +1,6 @@
 from robot_hat.utils import reset_mcu
 from picarx import Picarx  
+import threading
 import readchar
 import helper
 import driver
@@ -36,7 +37,10 @@ if __name__ == "__main__":
             if key in('amer'):
                 if 'a' == key:
                     actions = ["generate"]
-                    driver.auto(px,actions)
+                    t1 = threading.Thread(target=driver.auto(px,actions))
+                    t2 = threading.Thread(target=driver.stare_at(px))
+                    t1.start()
+                    t2.start()
                 elif 'm' == key:
                     driver.manual(px)
                 elif 'e' == key:
