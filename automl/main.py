@@ -28,6 +28,9 @@ def show_info():
 if __name__ == "__main__":
 
     try:
+        Vilib.camera_start()
+        Vilib.display()
+        Vilib.face_detect_switch(True)
         px = Picarx()
         while True:
             show_info()
