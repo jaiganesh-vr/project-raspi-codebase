@@ -175,7 +175,7 @@ def read_distance(px):
 def clamp_number(num,a,b):
   return max(min(num, max(a, b)), min(a, b))
 
-def stare_at():
+def stare_at(px):
     Vilib.camera_start()
     Vilib.display()
     Vilib.face_detect_switch(True)
@@ -195,11 +195,11 @@ def stare_at():
             y_angle = clamp_number(y_angle,-35,35)
             px.set_cam_tilt_angle(y_angle)
 
-            sleep(0.05)
+            time.sleep(0.05)
 
         else :
             pass
-            sleep(0.05)
+            time.sleep(0.05)
 
 
 # --- Auto Mode Functions ---
