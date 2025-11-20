@@ -157,6 +157,25 @@ def forward_left(px):
         px.set_dir_servo_angle(x)
         time.sleep(0.0525)   
 
+
+def generate(start,facing):
+        actions = []
+        print("••••••••••••••••••••••")
+        grid = navigator.load_map("map.txt")  
+        goal = navigator.generate_random_goal(grid,start)
+        path = navigator.find_shortest_path(grid, start, goal)
+        if path:
+            directions = navigator.path_to_directions(path)
+            relative_directions,facing_rel = navigator.convert_absolute_to_relative(directions,facing)
+            #final_directions = navigator.simplify_actions(relative_directions)
+            actions.extend(relative_directions)
+            print("Path found           :", path)
+            print("Absolute directions  :", directions)
+            #print("Relative Directions  :", final_directions,facing)
+        else:
+            print("No path found.")
+        return actions,goal,facing_rel
+
 # --- Ultrasonic Functions ---
 def read_distance(px):
   safe_distance = 40
@@ -207,9 +226,6 @@ def stare_at(px):
 def auto(px,actions):
     start = (3, 3) 
     facing = "up"
-    Vilib.camera_start()
-    Vilib.display()
-    Vilib.face_detect_switch(True)
     while actions:  # runs while the list is not empty
         distance = round(px.ultrasonic.read(), 2)
         if distance <= 20:
@@ -236,21 +252,7 @@ def auto(px,actions):
         elif current_action == "read":
             read_distance(px)
         elif current_action == "generate":
-            print("••••••••••••••••••••••")
-            grid = navigator.load_map("map.txt")  
-            goal = navigator.generate_random_goal(grid,start)
-            path = navigator.find_shortest_path(grid, start, goal)
-            if path:
-                directions = navigator.path_to_directions(path)
-                relative_directions,facing = navigator.convert_absolute_to_relative(directions,facing)
-                #final_directions = navigator.simplify_actions(relative_directions)
-                actions.extend(relative_directions)
-                actions.append("generate")
-                print("Path found           :", path)
-                print("Absolute directions  :", directions)
-                #print("Relative Directions  :", final_directions,facing)
-            else:
-                print("No path found.")
+            actions,goal,facing = generate(start,facing)
             start = goal
 
         px.stop()
