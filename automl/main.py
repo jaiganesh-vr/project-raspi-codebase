@@ -1,5 +1,6 @@
 from robot_hat.utils import reset_mcu
-from picarx import Picarx  
+from picarx import Picarx 
+from vilib import Vilib 
 import threading
 import readchar
 import helper
