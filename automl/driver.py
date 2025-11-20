@@ -176,6 +176,10 @@ def auto(px,actions):
     start = (3, 3) 
     facing = "up"
     while actions:  # runs while the list is not empty
+        distance = round(px.ultrasonic.read(), 2)
+        if distance <= 20:
+            actions.clear()
+            px.stop()
         current_action = actions.pop(0)  # remove the first item
         print(f"Executing: {current_action}")
         if current_action == "forward":
