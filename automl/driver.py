@@ -281,7 +281,7 @@ def auto(px,actions):
         distance = round(px.ultrasonic.read(), 2)
         if distance <= 20:
             print("Obstacle detected")
-            print("Current Location")
+            print("Current Location",current_location)
             actions.clear()
             px.stop()
             break
