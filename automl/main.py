@@ -69,7 +69,7 @@ if __name__ == "__main__":
                 if 'a' == key:
                     actions = ["generate"]
                     t1 = threading.Thread(target=driver.auto(px,actions))
-                    t2 = threading.Thread(stare_at(px))
+                    t2 = threading.Thread(target=driver.read_distance())
                     t1.start()
                     t2.start()
                 elif 'm' == key:
