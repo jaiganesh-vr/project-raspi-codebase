@@ -25,12 +25,42 @@ def show_info():
     print(manual)
     print(f"Battery Voltage: {voltage:.2f} V | Level: {level:.1f}% \n")
 
+# --- Camera Mode Functions ---
+
+def clamp_number(num,a,b):
+  return max(min(num, max(a, b)), min(a, b))
+
+def stare_at(px):
+    Vilib.camera_start()
+    Vilib.display()
+    Vilib.face_detect_switch(True)
+    x_angle =0
+    y_angle =0
+    while True:
+        if Vilib.detect_obj_parameter['human_n']!=0:
+            coordinate_x = Vilib.detect_obj_parameter['human_x']
+            coordinate_y = Vilib.detect_obj_parameter['human_y']
+            
+            # change the pan-tilt angle for track the object
+            x_angle +=(coordinate_x*10/640)-5
+            x_angle = clamp_number(x_angle,-35,35)
+            px.set_cam_pan_angle(x_angle)
+
+            y_angle -=(coordinate_y*10/480)-5
+            y_angle = clamp_number(y_angle,-35,35)
+            px.set_cam_tilt_angle(y_angle)
+
+            time.sleep(0.05)
+
+        else :
+            pass
+            time.sleep(0.05)
+
 
 if __name__ == "__main__":
 
     try:
         px = Picarx()
-        px1 = Picarx()
         while True:
             show_info()
             key = readchar.readkey()
@@ -39,7 +69,7 @@ if __name__ == "__main__":
                 if 'a' == key:
                     actions = ["generate"]
                     t1 = threading.Thread(target=driver.auto(px,actions))
-                    t2 = threading.Thread(target=driver.stare_at(px1))
+                    t2 = threading.Thread(target=driver.stare_at(px))
                     t1.start()
                     t1.join
                     t2.start()
