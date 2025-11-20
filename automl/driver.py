@@ -171,10 +171,10 @@ def generate(start,facing):
             actions.extend(relative_directions)
             print("Path found           :", path)
             print("Absolute directions  :", directions)
-            #print("Relative Directions  :", final_directions,facing)
+            print("Relative Directions  :", relative_directions,facing)
         else:
             print("No path found.")
-        return actions,goal,facing_rel
+        return actions,facing_rel
 
 # --- Ultrasonic Functions ---
 def read_distance(px):
@@ -221,43 +221,92 @@ def stare_at(px):
             pass
             time.sleep(0.05)
 
+# ---------------------------
+
+def update_location(current_location, previous_action, current_action):
+    x, y = current_location
+    
+    if previous_action.strip() == "":
+        previous_action = "up"
+
+    if previous_action == "up":
+        if current_action == "forward":
+            y += 1
+        elif current_action == "back":
+            y -= 1
+        elif current_action == "left":
+            x -= 1
+        elif current_action == "right":
+            x += 1
+
+    elif previous_action == "down":
+        if current_action == "forward":
+            y -= 1
+        elif current_action == "back":
+            y += 1
+        elif current_action == "left":
+            x += 1
+        elif current_action == "right":
+            x -= 1
+
+    elif previous_action == "left":
+        if current_action == "forward":
+            x -= 1
+        elif current_action == "back":
+            x += 1
+        elif current_action == "left":
+            y -= 1
+        elif current_action == "right":
+            y += 1
+
+    elif previous_action == "right":
+        if current_action == "forward":
+            x += 1
+        elif current_action == "back":
+            x -= 1
+        elif current_action == "left":
+            y += 1
+        elif current_action == "right":
+            y -= 1
+
+    return (x, y)
+
 # --- Auto Mode Functions ---
 
 def auto(px,actions):
-    start = (3, 3) 
+    current_location = (3, 3) 
     facing = "up"
+    previous_action = " "
     while actions:  # runs while the list is not empty
         distance = round(px.ultrasonic.read(), 2)
         if distance <= 20:
             print("Obstacle detected")
+            print("Current Location")
             actions.clear()
             px.stop()
             break
         current_action = actions.pop(0)  # remove the first item
+        previous_action = current_action
         print(f"Executing: {current_action}")
         if current_action == "forward":
             move_forward(px)
+            update_location(current_location,previous_action,current_action)
         elif current_action == "reverse":
             move_reverse(px)
+            update_location(current_location,previous_action,current_action)
         elif current_action == "right":
             turn_right(px)
+            update_location(current_location,previous_action,current_action)
         elif current_action == "left":
             turn_left(px)
-        elif current_action == "forward_left":
-            forward_left(px)
-        elif current_action == "forward_right":
-            forward_right(px)
+            update_location(current_location,previous_action,current_action)
         elif current_action == "stop":
             px.stop()
-        elif current_action == "read":
-            read_distance(px)
         elif current_action == "generate":
-            actions,goal,facing = generate(start,facing)
-            start = goal
-
+            actions,facing = generate(current_location,facing)
         px.stop()
         time.sleep(PAUSE_BETWEEN_ACTIONS)
-
+    
     print("All actions completed! \n")
     time.sleep(2)
             
