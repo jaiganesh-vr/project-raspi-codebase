@@ -180,6 +180,7 @@ def auto(px,actions):
         if distance <= 20:
             actions.clear()
             px.stop()
+            break
         current_action = actions.pop(0)  # remove the first item
         print(f"Executing: {current_action}")
         if current_action == "forward":
