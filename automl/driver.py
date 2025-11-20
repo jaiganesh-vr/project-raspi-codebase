@@ -207,7 +207,7 @@ def stare_at(px):
 def auto(px,actions):
     start = (3, 3) 
     facing = "up"
-    stare_at()
+    stare_at(px)
     while actions:  # runs while the list is not empty
         distance = round(px.ultrasonic.read(), 2)
         if distance <= 20:
