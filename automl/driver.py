@@ -271,6 +271,53 @@ def update_location(current_location, previous_action, current_action):
 
     return (x, y)
 
+def update_location_and_facing(current_location, previous_facing, action):
+    x, y = current_location
+
+    # Default facing if none given
+    if previous_facing.strip() == "":
+        previous_facing = "up"
+
+    # All possible facings in order
+    facings = ["up", "right", "down", "left"]
+
+    # Helper to rotate left/right
+    def turn(facing, direction):
+        idx = facings.index(facing)
+        if direction == "left":
+            return facings[(idx - 1) % 4]
+        elif direction == "right":
+            return facings[(idx + 1) % 4]
+        return facing  # no turn
+
+    # If action is a turn, update facing first
+    if action in ("left", "right"):
+        new_facing = turn(previous_facing, action)
+        # Turning does NOT change location
+        return (x, y), new_facing
+
+    # If action is forward/back, move according to current facing
+    new_facing = previous_facing
+
+    if previous_facing == "up":
+        if action == "forward": y += 1
+        elif action == "back": y -= 1
+
+    elif previous_facing == "down":
+        if action == "forward": y -= 1
+        elif action == "back": y += 1
+
+    elif previous_facing == "left":
+        if action == "forward": x -= 1
+        elif action == "back": x += 1
+
+    elif previous_facing == "right":
+        if action == "forward": x += 1
+        elif action == "back": x -= 1
+
+    return (x, y), new_facing
+
+
 # --- Auto Mode Functions ---
 
 def auto(px,actions):
@@ -279,7 +326,7 @@ def auto(px,actions):
     previous_action = " "
     while actions:  # runs while the list is not empty
         distance = round(px.ultrasonic.read(), 2)
-        if distance <= 20:
+        if distance <= 20:  
             print("Obstacle detected")
             print("Current Location",current_location)
             actions.clear()
@@ -290,16 +337,20 @@ def auto(px,actions):
         print(f"Executing: {current_action}")
         if current_action == "forward":
             move_forward(px)
-            current_location = update_location(current_location,previous_action,current_action)
+            current_location,facing = update_location(current_location,facing,current_action)
+            print(current_action,facing)
         elif current_action == "reverse":
             move_reverse(px)
-            current_location = update_location(current_location,previous_action,current_action)
+            current_location = update_location(current_location,facing,current_action)
+            print(current_action,facing)
         elif current_action == "right":
             turn_right(px)
-            current_location = update_location(current_location,previous_action,current_action)
+            current_location = update_location(current_location,facing,current_action)
+            print(current_action,facing)
         elif current_action == "left":
             turn_left(px)
-            current_location = update_location(current_location,previous_action,current_action)
+            current_location = update_location(current_location,facing,current_action)
+            print(current_action,facing)
         elif current_action == "stop":
             px.stop()
         elif current_action == "generate":
