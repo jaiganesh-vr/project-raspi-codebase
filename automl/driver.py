@@ -198,9 +198,23 @@ def update_location_and_facing(current_location, current_action, facing):
     y = int(current_location[1])    
 
     if current_action == "left":
-        facing = "left"
+        if facing == "up":
+            facing = "left"
+        elif facing == "down":
+            facing = "right"
+        elif facing == "left":
+            facing = "down"
+        elif facing == "right":
+            facing = "up"    
     elif current_action == "right":
-        facing = "right"
+        if facing == "up":
+            facing = "right"
+        elif facing == "down":
+            facing = "left"
+        elif facing == "left":
+            facing = "up"
+        elif facing == "right":
+            facing = "down"    
     elif current_action == "reverse":
         if facing == "up":
             facing = "down"
