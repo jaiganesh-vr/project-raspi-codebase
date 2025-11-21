@@ -252,8 +252,12 @@ def auto(px,actions):
             print("Obstacle detected")
             print("current location, facing", current_location,facing)
             actions.clear()
-            px.stop()
-            break
+            obstacle_location = current_location
+            navigator.update_map_cell("map.txt", obstacle_location, 1)
+            print(navigator.load_map("map.txt"))
+            actions = generate(current_location,facing)
+            actions.append("generate")
+            continue
         current_action = actions.pop(0)  # remove the first item
         print(f"Executing: {current_action}")
         if current_action == "forward":
