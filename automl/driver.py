@@ -315,13 +315,13 @@ def update_location_and_facing(current_location, previous_facing, action):
         if action == "forward": x += 1
         elif action == "back": x -= 1
 
-    return (x, y), new_facing
+    return [x, y], new_facing
 
 
 # --- Auto Mode Functions ---
 
 def auto(px,actions):
-    current_location = (3, 3) 
+    current_location = [3, 3] 
     facing = "up"
     previous_action = " "
     while actions:  # runs while the list is not empty
