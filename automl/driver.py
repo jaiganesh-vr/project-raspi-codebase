@@ -175,7 +175,7 @@ def generate(start,facing):
             print("Relative Directions  :", relative_directions,facing_rel)
         else:
             print("No path found.")
-        return actions,facing_rel
+        return actions
 
 # --- Ultrasonic Functions ---
 def read_distance(px):
