@@ -251,6 +251,8 @@ def auto(px,actions):
         if distance <= 20:  
             print("Obstacle detected")
             print("current location, facing", current_location,facing)
+            turn_right(px)
+            current_location, facing = update_location_and_facing(current_location,"right",facing)
             actions.clear()
             obstacle_location = current_location
             navigator.update_map_cell("map.txt", obstacle_location, 1)
