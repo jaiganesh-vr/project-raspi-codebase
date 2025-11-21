@@ -267,6 +267,7 @@ def auto(px,actions):
             px.stop()
         elif current_action == "generate":
             actions = generate(current_location,facing)
+            actions.append("generate")
         px.stop()
         time.sleep(PAUSE_BETWEEN_ACTIONS)
     
