@@ -250,6 +250,7 @@ def auto(px,actions):
         distance = round(px.ultrasonic.read(), 2)
         if distance <= 20:  
             print("Obstacle detected")
+            print("current location, facing", current_action,facing)
             actions.clear()
             px.stop()
             break
@@ -274,8 +275,7 @@ def auto(px,actions):
             actions.append("generate")
         px.stop()
         time.sleep(PAUSE_BETWEEN_ACTIONS)
-        print("Final location:",current_location)
-        print("Final facing:",facing)
+        print("Location, Facing:",current_action,facing)
 
     print("All actions completed! \n")
     time.sleep(2)
