@@ -196,26 +196,35 @@ def read_distance(px):
 def update_location_and_facing(current_location, current_action, facing):
     x = int(current_location[0])
     y = int(current_location[1])    
-    
+
     if current_action == "left":
-        new_facing = "left"
-        return (x, y), new_facing
+        facing = "left"
     elif current_action == "right":
-        new_facing = "right"
-        return (x, y), new_facing
-    elif current_location == "reverse":
-        new_facing = "down"
-        return (x, y), new_facing
+        facing = "right"
+    elif current_action == "reverse":
+        if facing == "up":
+            facing = "down"
+        elif facing == "down":
+            facing = "up"
+        elif facing == "left":
+            facing = "right"
+        elif facing == "right":
+            facing = "left"
     elif current_action == "forward":
         if facing == "up":
+            facing = "up"
             x -= 1
         elif facing == "down":
+            facing = "down"
             x += 1
         elif facing == "left":
+            facing = "left"
             y -=1
         elif facing == "right":
+            facing = "right"
             y += 1
-        return (x, y), facing
+
+    return (x,y), facing
 
 
 # --- Auto Mode Functions ---
