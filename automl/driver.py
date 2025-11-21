@@ -337,20 +337,20 @@ def auto(px,actions):
         print(f"Executing: {current_action}")
         if current_action == "forward":
             move_forward(px)
-            current_location,facing = update_location(current_location,facing,current_action)
-            print(current_action,facing)
+            current_location,facing = update_location_and_facing(current_location,facing,current_action)
+            print(current_location,facing)
         elif current_action == "reverse":
             move_reverse(px)
-            current_location = update_location(current_location,facing,current_action)
-            print(current_action,facing)
+            current_location = update_location_and_facing(current_location,facing,current_action)
+            print(current_location,facing)
         elif current_action == "right":
             turn_right(px)
-            current_location = update_location(current_location,facing,current_action)
-            print(current_action,facing)
+            current_location = update_location_and_facing(current_location,facing,current_action)
+            print(current_location,facing)
         elif current_action == "left":
             turn_left(px)
-            current_location = update_location(current_location,facing,current_action)
-            print(current_action,facing)
+            current_location = update_location_and_facing(current_location,facing,current_action)
+            print(current_location,facing)
         elif current_action == "stop":
             px.stop()
         elif current_action == "generate":
