@@ -254,7 +254,8 @@ def auto(px,actions):
             actions.clear()
             obstacle_location = current_location
             navigator.update_map_cell("map.txt", obstacle_location, 1)
-            print(navigator.load_map("map.txt"))
+            grid = navigator.load_map("map.txt")
+            print(grid)
             actions = generate(current_location,facing)
             actions.append("generate")
             continue
