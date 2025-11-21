@@ -272,7 +272,7 @@ def update_location(current_location, previous_action, current_action):
     return (x, y)
 
 def update_location_and_facing(current_location, previous_facing, action):
-    x, y = current_location
+    x, y = list(current_location)
 
     # Default facing if none given
     if previous_facing.strip() == "":
@@ -321,7 +321,7 @@ def update_location_and_facing(current_location, previous_facing, action):
 # --- Auto Mode Functions ---
 
 def auto(px,actions):
-    current_location = [3, 3] 
+    current_location = (3, 3) 
     facing = "up"
     previous_action = " "
     while actions:  # runs while the list is not empty
