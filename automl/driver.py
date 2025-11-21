@@ -160,6 +160,7 @@ def forward_left(px):
 # ----- Path generation function ------
 
 def generate(start,facing):
+        actions = []
         print("••••••••••••••••••••••")
         grid = navigator.load_map("map.txt")  
         goal = navigator.generate_random_goal(grid,start)
@@ -167,13 +168,14 @@ def generate(start,facing):
         if path:
             directions = navigator.path_to_directions(path)
             relative_directions,facing_rel = navigator.convert_absolute_to_relative(directions,facing)
+            actions.extend(relative_directions)
             #final_directions = navigator.simplify_actions(relative_directions)
             print("Path found           :", path)
             print("Absolute directions  :", directions)
             print("Relative Directions  :", relative_directions,facing_rel)
         else:
             print("No path found.")
-        return list(relative_directions),facing_rel
+        return actions,facing_rel
 
 # --- Ultrasonic Functions ---
 def read_distance(px):
@@ -244,7 +246,6 @@ def update_location_and_facing(current_location, previous_facing, action):
 def auto(px,actions):
     current_location = (3, 3) 
     facing = "up"
-    previous_action = " "
     while actions:  # runs while the list is not empty
         distance = round(px.ultrasonic.read(), 2)
         if distance <= 20:  
