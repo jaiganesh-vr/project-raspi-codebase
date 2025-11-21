@@ -260,9 +260,9 @@ def auto(px,actions):
             actions.append("generate")
         px.stop()
         time.sleep(PAUSE_BETWEEN_ACTIONS)
-    
-    print("Final location:",current_location)
-    print("Final facing:",facing)
+        print("Final location:",current_location)
+        print("Final facing:",facing)
+
     print("All actions completed! \n")
     time.sleep(2)
             
