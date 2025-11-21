@@ -272,7 +272,7 @@ def update_location(current_location, previous_action, current_action):
     return (x, y)
 
 def update_location_and_facing(current_location, previous_facing, action):
-    x, y = current_location[0],current_location[1]
+    x, y = int(current_location[0]), int(current_location[1])
 
     # Default facing if none given
     if previous_facing.strip() == "":
