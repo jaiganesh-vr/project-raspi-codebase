@@ -257,8 +257,7 @@ def auto(px,actions):
             grid = navigator.load_map("map.txt")
             print(grid)
             actions = generate(current_location,facing)
-            actions.append("generate")
-            continue
+            continue            
         current_action = actions.pop(0)  # remove the first item
         print(f"Executing: {current_action}")
         if current_action == "forward":
