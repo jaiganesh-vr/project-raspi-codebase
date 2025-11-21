@@ -193,52 +193,29 @@ def read_distance(px):
 
 # ----------------------------
 
-def update_location_and_facing(current_location, previous_facing, action):
+def update_location_and_facing(current_location, current_action, facing):
     x = int(current_location[0])
     y = int(current_location[1])    
-
-    # Default facing if none given
-    if previous_facing.strip() == " ":
-        previous_facing = "up"
-
-    # All possible facings in order
-    facings = ["up", "right", "down", "left"]
-
-    # Helper to rotate left/right
-    def turn(facing, direction):
-        idx = facings.index(facing)
-        if direction == "left":
-            return facings[(idx - 1) % 4]
-        elif direction == "right":
-            return facings[(idx + 1) % 4]
-        return facing  # no turn
-
-    # If action is a turn, update facing first
-    if action in ("left", "right"):
-        new_facing = turn(previous_facing, action)
-        # Turning does NOT change location
+    
+    if current_action == "left":
+        new_facing = "left"
         return (x, y), new_facing
-
-    # If action is forward/back, move according to current facing
-    new_facing = previous_facing
-
-    if previous_facing == "up":
-        if action == "forward": y += 1
-        elif action == "back": y -= 1
-
-    elif previous_facing == "down":
-        if action == "forward": y -= 1
-        elif action == "back": y += 1
-
-    elif previous_facing == "left":
-        if action == "forward": x -= 1
-        elif action == "back": x += 1
-
-    elif previous_facing == "right":
-        if action == "forward": x += 1
-        elif action == "back": x -= 1
-
-    return (x, y), new_facing
+    elif current_action == "right":
+        new_facing = "right"
+        return (x, y), new_facing
+    elif current_location == "reverse":
+        new_facing = "down"
+        return (x, y), new_facing
+    elif current_action == "forward":
+        if facing == "up":
+            x -= 1
+        elif facing == "down":
+            x += 1
+        elif facing == "left":
+            y -=1
+        elif facing == "right":
+            y += 1
+        return (x, y), facing
 
 
 # --- Auto Mode Functions ---
@@ -257,12 +234,16 @@ def auto(px,actions):
         print(f"Executing: {current_action}")
         if current_action == "forward":
             move_forward(px)
+            current_location, facing = update_location_and_facing(current_location,current_action,facing)
         elif current_action == "reverse":
             move_reverse(px)
+            current_location, facing = update_location_and_facing(current_location,current_action,facing)
         elif current_action == "right":
             turn_right(px)
+            current_location, facing = update_location_and_facing(current_location,current_action,facing)
         elif current_action == "left":
             turn_left(px)
+            current_location, facing = update_location_and_facing(current_location,current_action,facing)
         elif current_action == "stop":
             px.stop()
         elif current_action == "generate":
