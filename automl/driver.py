@@ -157,9 +157,9 @@ def forward_left(px):
         px.set_dir_servo_angle(x)
         time.sleep(0.0525)   
 
+# ----- Path generation function ------
 
 def generate(start,facing):
-        actions = []
         print("••••••••••••••••••••••")
         grid = navigator.load_map("map.txt")  
         goal = navigator.generate_random_goal(grid,start)
@@ -168,13 +168,12 @@ def generate(start,facing):
             directions = navigator.path_to_directions(path)
             relative_directions,facing_rel = navigator.convert_absolute_to_relative(directions,facing)
             #final_directions = navigator.simplify_actions(relative_directions)
-            actions.extend(relative_directions)
             print("Path found           :", path)
             print("Absolute directions  :", directions)
-            print("Relative Directions  :", relative_directions,facing)
+            print("Relative Directions  :", relative_directions,facing_rel)
         else:
             print("No path found.")
-        return actions,facing_rel
+        return relative_directions,facing_rel
 
 # --- Ultrasonic Functions ---
 def read_distance(px):
@@ -190,93 +189,14 @@ def read_distance(px):
             else:
                 print("not safe")
 
-# --- Camera Mode Functions ---
-
-def clamp_number(num,a,b):
-  return max(min(num, max(a, b)), min(a, b))
-
-def stare_at(px):
-    Vilib.camera_start()
-    Vilib.display()
-    Vilib.face_detect_switch(True)
-    x_angle =0
-    y_angle =0
-    while True:
-        if Vilib.detect_obj_parameter['human_n']!=0:
-            coordinate_x = Vilib.detect_obj_parameter['human_x']
-            coordinate_y = Vilib.detect_obj_parameter['human_y']
-            
-            # change the pan-tilt angle for track the object
-            x_angle +=(coordinate_x*10/640)-5
-            x_angle = clamp_number(x_angle,-35,35)
-            px.set_cam_pan_angle(x_angle)
-
-            y_angle -=(coordinate_y*10/480)-5
-            y_angle = clamp_number(y_angle,-35,35)
-            px.set_cam_tilt_angle(y_angle)
-
-            time.sleep(0.05)
-
-        else :
-            pass
-            time.sleep(0.05)
-
-# ---------------------------
-
-def update_location(current_location, previous_action, current_action):
-    x, y = current_location
-    
-    if previous_action.strip() == "":
-        previous_action = "up"
-
-    if previous_action == "up":
-        if current_action == "forward":
-            y += 1
-        elif current_action == "back":
-            y -= 1
-        elif current_action == "left":
-            x -= 1
-        elif current_action == "right":
-            x += 1
-
-    elif previous_action == "down":
-        if current_action == "forward":
-            y -= 1
-        elif current_action == "back":
-            y += 1
-        elif current_action == "left":
-            x += 1
-        elif current_action == "right":
-            x -= 1
-
-    elif previous_action == "left":
-        if current_action == "forward":
-            x -= 1
-        elif current_action == "back":
-            x += 1
-        elif current_action == "left":
-            y -= 1
-        elif current_action == "right":
-            y += 1
-
-    elif previous_action == "right":
-        if current_action == "forward":
-            x += 1
-        elif current_action == "back":
-            x -= 1
-        elif current_action == "left":
-            y += 1
-        elif current_action == "right":
-            y -= 1
-
-    return (x, y)
+# ----------------------------
 
 def update_location_and_facing(current_location, previous_facing, action):
-    x1, y1 = list(current_location)
-    x = int(x1)
-    y = int(y1)
+    x = int(current_location[0])
+    y = int(current_location[1])    
+
     # Default facing if none given
-    if previous_facing.strip() == "":
+    if previous_facing.strip() == " ":
         previous_facing = "up"
 
     # All possible facings in order
@@ -316,7 +236,7 @@ def update_location_and_facing(current_location, previous_facing, action):
         if action == "forward": x += 1
         elif action == "back": x -= 1
 
-    return [x, y], new_facing
+    return (x, y), new_facing
 
 
 # --- Auto Mode Functions ---
@@ -329,12 +249,10 @@ def auto(px,actions):
         distance = round(px.ultrasonic.read(), 2)
         if distance <= 20:  
             print("Obstacle detected")
-            print("Current Location",current_location)
             actions.clear()
             px.stop()
             break
         current_action = actions.pop(0)  # remove the first item
-        previous_action = current_action
         print(f"Executing: {current_action}")
         if current_action == "forward":
             move_forward(px)
@@ -355,7 +273,7 @@ def auto(px,actions):
         elif current_action == "stop":
             px.stop()
         elif current_action == "generate":
-            actions,facing = generate(current_location,facing)
+            actions = generate(current_location,facing)
         px.stop()
         time.sleep(PAUSE_BETWEEN_ACTIONS)
     
