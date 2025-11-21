@@ -1,11 +1,36 @@
 import random
 from collections import deque
 
+# ---- Mapping Functions ---------
+
 def load_map(filename):
     """Load matrix from a text file"""
     with open(filename) as f:
         grid = [list(map(int, line.split())) for line in f]
     return grid
+
+def update_map_cell(filename, location, new_value):
+
+    x, y = location  
+
+    grid = []
+    with open(filename, "r") as f:
+        for line in f:
+            row = [int(v) for v in line.strip().split()]
+            grid.append(row)
+
+    if x < 0 or y < 0 or x >= len(grid) or y >= len(grid[0]):
+        raise ValueError(f"Coordinates {location} are out of bounds.")
+
+    grid[x][y] = new_value
+
+    with open(filename, "w") as f:
+        for row in grid:
+            f.write(" ".join(str(v) for v in row) + "\n")
+
+    return grid
+
+# ----- Path Finding Functions ----------
 
 def generate_random_goal(grid, start):
     """
@@ -66,7 +91,6 @@ def path_to_directions(path):
         elif r2 == r1 - 1 and c2 == c1:
             directions.append("up")
     return directions
-
 
 def convert_absolute_to_relative(directions, initial_facing):
     """
