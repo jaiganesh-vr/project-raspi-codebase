@@ -259,6 +259,7 @@ def auto(px,actions):
             grid = navigator.load_map("map.txt")
             print(grid)
             actions = generate(current_location,facing)
+            actions.append("generate")
             time.sleep(2)
             continue            
         current_action = actions.pop(0)  # remove the first item
